@@ -1,0 +1,3060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LAU Libraries - Discover. Learn. Connect.</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <style>
+
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+
+/* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #006751;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0px;
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.9rem; 
+        }
+
+        .nav-links a:hover {
+            color: #006751;
+            background: rgba(0, 103, 81, 0.10);
+            }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background:  #006751;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 80%;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 1rem;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #333;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown a:hover {
+            background: #f8f9fa;
+            color: #667eea;
+        }
+
+        .dropdown.dropdown-about {
+            min-width: 250px;
+        }
+
+        .dropdown.dropdown-visitus {
+            min-width: 300px;
+        }
+
+        /* Mobile hamburger button - hidden on desktop, shown only under 768px */
+        .mobile-menu-toggle {
+            display: none;
+        }
+
+        /* Accordion arrow buttons (top-level sections) - hidden on desktop, shown only under 768px */
+        .mobile-dropdown-toggle {
+            display: none;
+        }
+
+
+/* Hero Section */
+        .hero {
+            padding: 120px 2rem 60px;
+            text-align: center;
+            color: #ffffff;
+    background: linear-gradient(rgba(0,0,0,0.62), rgba(0,0,0,0.62)), 
+        url('https://images.unsplash.com/photo-1529148482759-b35b25c5f217?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            transition: background-image 1.2s ease-in-out;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            opacity: 0.3;
+            pointer-events: none; 
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(1px);             
+           -webkit-backdrop-filter: blur(20px)!important;  
+          
+            
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            
+        }
+
+        .hero p strong{ color:#4ade80; font-weight:600; }
+
+        .search-container {
+            margin-top: 2rem;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        .search-box {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 1rem 2rem;
+            border: none;
+            background: transparent;
+            color: white;
+            font-size: 0.35rem;
+            outline: none;
+        }
+
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-box button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 1rem 2rem;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-box button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+/* Quick Access */
+        .quick-access {
+            padding: 4rem 2rem;
+            background: white;
+            position: relative;
+        }
+
+       /*.quick-access::before {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1529148482759-b35b25c5f217?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover;
+            clip-path: polygon(0 50px, 100% 0, 100% 100%, 0 100%);
+        }*/
+        .container {
+            display: grid;
+            
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        #open{
+     border: 1px solid #eef0f2;
+     border-radius: 28px;
+     max-width: 1200px;
+     background: #ffffff;
+     box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    padding: 1.25rem 1.5rem 1.25rem;
+    gap: 0.6rem;
+}
+
+.view-all-hours-link{ display:none; }
+
+.section-title {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+}
+
+.section-title i{ color:#4ade80; font-size:1.05rem; }
+        /*.section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }*/
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            
+            background: white;
+            border-radius: 20px;
+            padding: 0.8rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+
+        .service-icon {
+            font-size:2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+       
+        .service-card h3 {
+            margin-bottom: 1rem;
+            color: #333;
+            font-size: 1.3rem;
+        }
+
+        .service-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #006751 0%, #00b386 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+         .quick-access{
+            background-image: url('images/jul.jpg');
+            background-size: cover;     /* makes image fill the section */
+            background-position: center; /* centers the image */
+            background-repeat: no-repeat;
+         }
+
+ /* Hours Section */
+        .hours-section {
+            background: transparent;
+           /* padding: 2rem 1rem;*/
+           
+        }
+
+        .hours-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+}
+
+.hours-card{
+    padding: 0;
+    text-align: center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.hours-icon{
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.3rem;
+    margin-bottom:0.75rem;
+}
+
+.icon-green{ background:#e6f4ef; color:#006751; }
+.icon-yellow{ background:#fdf3e3; color:#c8860d; }
+.icon-blue{ background:#e6f0fb; color:#2563eb; }
+.icon-purple{ background:#f1e9fb; color:#7c3aed; }
+
+.hours-card h3 {
+    margin-bottom: 0.15rem;
+    color: #1a1a1a;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.hours-card .time {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: #8a8a8a;
+    margin-bottom: 0.2rem;
+}
+
+.hours-card .status {
+    font-size: 0.75rem;
+    font-weight: 600;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    margin-bottom:0.3rem;
+}
+
+.status .dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    display:inline-block;
+}
+
+.status.open{ color:#15803d; }
+.status.open .dot{ background:#15803d; }
+
+.status.closed{ color:#b91c1c; }
+.status.closed .dot{ background:#b91c1c; }
+
+.card-hours-link{
+    font-size:0.7rem;
+    font-weight:600;
+    color:#006751;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:4px;
+}
+.card-hours-link:hover{ text-decoration:underline; }
+
+#open .section-title{ color:#1a1a1a; margin-bottom:0; font-size:1.1rem; }
+
+#card-beirut{
+    position: relative;
+}
+#card-beirut::before{
+    content: '';
+    position: absolute;
+    left: -0.625rem;
+    top: 8%;
+    bottom: 8%;
+    width: 2px;
+    background: repeating-linear-gradient(to bottom, #8a8a8a 0, #8a8a8a 5px, transparent 5px, transparent 10px);
+}
+
+@media (max-width: 900px) {
+    #open{
+        border-radius: 20px;
+        padding: 1.1rem 1.1rem 1.1rem;
+    }
+    .hours-grid{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.1rem 0.75rem;
+    }
+}
+
+@media (max-width: 600px) {
+    #open{
+        border-radius: 16px;
+        padding: 1rem 1rem 1.1rem;
+    }
+    .hours-grid{
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    #card-beirut::before{
+        left: 0;
+        right: 0;
+        top: -0.5rem;
+        bottom: auto;
+        width: auto;
+        height: 2px;
+        background: repeating-linear-gradient(to right, #8a8a8a 0, #8a8a8a 5px, transparent 5px, transparent 10px);
+    }
+}
+
+       
+        #lc-hours-data {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+        }
+
+      
+ /* Archives & Special Collections */
+        .swiper-slide a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .special-products {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        .section-title2{
+            color:black;
+            text-align: left;
+        }
+
+        .archives-container {
+            max-width: 1200px;
+            display: flex;
+            gap: 3rem;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            box-shadow: var(--shadow);
+        }
+
+    
+        .swiper-container {
+            flex: 3;
+            border-radius: var(--border-radius-sm);
+            overflow: hidden;
+        }
+
+        .swiper-slide {
+            position: relative;
+            border-radius: var(--border-radius-sm);
+            overflow: hidden;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .swiper-slide:hover img {
+            transform: scale(1.05);
+        }
+
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: var(--white);
+            padding: 2rem;
+            transform: translateY(0);
+            transition: var(--transition);
+        }
+
+        .swiper-slide:hover .slide-overlay {
+            transform: translateY(0);
+        }
+
+        .archives-links {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .archive-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--light-gray);
+            border-radius: var(--border-radius-sm);
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: var(--transition);
+            border-left: 4px solid transparent;
+        }
+
+        .archive-link:hover {
+            background: var(--white);
+            border-left-color: var(--lau-green);
+            transform: translateX(5px);
+            box-shadow: var(--shadow);
+        }
+
+        .archive-link i {
+            color: var(--lau-green);
+            font-size: 1.2rem;
+        }
+
+        a.details-btn{
+            color:#7f52aa;
+        }
+      
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #ffffff;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: var(--white);
+            border-radius: 50px;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
+        }
+
+        .whatsapp-float:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.6);
+        }
+
+         /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .spotlight-items {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .spotlight-items img {
+                width: 100%;
+                max-width: 500px;
+            }
+            
+            .archives-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+                position: relative;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: none;
+                border: none;
+                font-size: 1.4rem;
+                cursor: pointer;
+                color: #006751;
+                z-index: 1001;
+                padding: 0.25rem 0.5rem;
+            }
+
+            .nav-links.mobile-open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #ffffff;
+                padding: 0.5rem 1.25rem 1.5rem;
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
+                z-index: 1001;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+                border-top: 1px solid rgba(0, 0, 0, 0.06);
+            }
+
+            /* Top-level sections: Finding Materials / Using the Library / Getting Support / Visit Us / About */
+            .nav-links.mobile-open .nav-item {
+                margin-bottom: 0.15rem;
+                width: 100%;
+                border-bottom: 1px solid #eee;
+            }
+
+            .nav-links.mobile-open .nav-item:last-of-type {
+                border-bottom: none;
+            }
+
+            .nav-links.mobile-open .mobile-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .nav-links.mobile-open .nav-item > a {
+                flex: 1;
+                font-weight: 600;
+                padding: 0.7rem 0.25rem;
+            }
+
+            .nav-links.mobile-open .nav-item > a::after {
+                display: none;
+            }
+
+            /* Arrow toggle button for each top-level section */
+            .nav-links.mobile-open .mobile-dropdown-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 2.2rem;
+                height: 2.2rem;
+                flex-shrink: 0;
+                background: none;
+                border: none;
+                color: #006751;
+                font-size: 0.9rem;
+                cursor: pointer;
+            }
+
+            .nav-links.mobile-open .mobile-dropdown-toggle i {
+                transition: transform 0.25s ease;
+            }
+
+            .nav-links.mobile-open .nav-item.mobile-expanded > .mobile-row .mobile-dropdown-toggle i {
+                transform: rotate(180deg);
+            }
+
+            /* Dropdown / mega-menu: collapsed by default, shown only when its section is expanded */
+            .nav-links.mobile-open .dropdown,
+            .nav-links.mobile-open .mega-menu {
+                display: none;
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: #f8f9fa;
+                margin: 0 0 0.6rem;
+                padding: 0.75rem 1rem;
+                border-radius: 8px;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .nav-links.mobile-open .nav-item.mobile-expanded > .dropdown,
+            .nav-links.mobile-open .nav-item.mobile-expanded > .mega-menu {
+                display: block;
+            }
+
+            .nav-links.mobile-open .mega-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .nav-links.mobile-open .mega-col {
+                padding-left: 0;
+            }
+
+            .nav-links.mobile-open .mega-col:not(:first-child)::before {
+                display: none;
+            }
+
+            .nav-links.mobile-open .mega-col:not(:first-child) {
+                border-top: 1px solid #e7e7e7;
+                padding-top: 0.75rem;
+                margin-top: 0.5rem;
+            }
+
+            /* Nested submenus (Suggest a Purchase, Group Study Rooms): collapsed until tapped */
+            .nav-links.mobile-open .submenu {
+                display: block;
+            }
+
+            .nav-links.mobile-open .submenu-title {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .nav-links.mobile-open .submenu-dropdown {
+                position: static;
+                display: none;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: transparent;
+                padding: 0 0 0 1rem;
+            }
+
+            .nav-links.mobile-open .submenu.mobile-expanded .submenu-dropdown {
+                display: block;
+            }
+
+            /* My Account: removed from beside the hamburger, shown at the top of the menu instead */
+            .nav-links.mobile-open .mobile-account-item {
+                border-bottom: 1px solid #eee;
+                padding-bottom: 0.5rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .nav-links.mobile-open .mobile-account-item .my-account-btn {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                padding: 0.6rem 1rem;
+                font-weight: 600;
+            }
+
+            /* On-page section summary/TOC box isn't practical on mobile - hide it entirely */
+            .page-toc {
+                display: none !important;
+            }
+
+            .page-shell.with-toc {
+                grid-template-columns: 1fr !important;
+            }
+
+            .hero {
+                padding: 140px 1rem 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .search-box {
+                flex-direction: column;
+                border-radius: 12px;
+            }
+
+            .search-box input,
+            .search-box button {
+                width: 100%;
+                padding: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.9rem;
+                align-items: stretch;
+            }
+
+            .service-card {
+                padding: 1rem 0.6rem;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+
+            .service-card .service-icon {
+                font-size: 1.8rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .service-card h3 {
+                font-size: 0.95rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .service-card p {
+                font-size: 0.78rem;
+                margin-bottom: 1rem;
+                flex: 1;
+            }
+
+            .service-card .btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.78rem;
+                margin-top: auto;
+                align-self: center;
+                width: 100%;
+            }
+
+            /* Footer: compact, aligned on fewer lines on mobile */
+            footer {
+                padding: 2.25rem 1.25rem 1.25rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .footer-section h4 {
+                font-size: 0.95rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .footer-links {
+                gap: 0.45rem;
+            }
+
+            .footer-links a {
+                font-size: 0.8rem;
+            }
+
+            .copyright {
+                padding-top: 1.1rem;
+                font-size: 0.75rem;
+            }
+
+            .copyright p:last-child {
+                margin-top: 0.3rem !important;
+            }
+        }
+   
+   
+
+
+  .spotlight {
+    background-image: url('images/12569.png');
+    background-size: cover;     /* makes image fill the section */
+    background-position: center; /* centers the image */
+    background-repeat: no-repeat;
+   
+  }
+/* ===========================
+   UPCOMING EVENTS
+=========================== */
+
+#api_upc_cid21473_iid954{
+
+    max-width:1300px;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:20px;
+    margin:40px auto;
+
+    display:grid;
+}
+
+#api_upc_cid21473_iid954>.s-lc-ea-h3{
+
+    grid-column:1/-1;
+
+    font-size:2.4rem;
+    font-weight:700;
+
+    color:#202020;
+
+    margin-bottom:-5px;
+}
+
+/*****************
+CARD
+******************/
+
+#api_upc_cid21473_iid954 .media.s-lc-c-evt{
+
+    display:flex!important;
+    flex-direction:column!important;
+
+    overflow:hidden;
+
+    border-radius:18px;
+
+    background:white;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+    height:100%;
+}
+
+#api_upc_cid21473_iid954 .media.s-lc-c-evt:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 22px 55px rgba(0,0,0,.14);
+
+}
+
+/*****************
+IMAGE
+******************/
+
+#api_upc_cid21473_iid954 .media-right{
+
+    order:-1;
+    width: 100%;
+
+    margin:0;
+
+    padding:20px 20px 0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#api_upc_cid21473_iid954 .media-right a{
+
+    display:flex !important;
+    justify-content:center;
+    align-items:center;
+
+    width:100%;
+}
+
+#api_upc_cid21473_iid954 .media-right img{
+
+    width:100%;
+
+    height:200px;
+
+    object-fit:contain;
+
+    object-position:center center;
+
+    display:block;
+
+    border-radius:10px;
+
+    background:#f5f5f5;
+
+    padding:6px;
+}
+
+/*****************
+BODY
+******************/
+
+#api_upc_cid21473_iid954 .media-body{
+
+    display:flex;
+
+    flex-direction:column;
+
+    flex:1;
+
+    padding:16px 18px;
+}
+
+
+/*****************
+TITLE
+******************/
+
+#api_upc_cid21473_iid954 .media-heading{
+
+    margin:0 0 8px;
+}
+
+#api_upc_cid21473_iid954 .media-heading a{
+
+    color:#006751;
+
+    text-decoration:none;
+
+    font-size:1.15rem;
+
+    font-weight:700;
+
+    line-height:1.3;
+}
+
+#api_upc_cid21473_iid954 .media-heading a:hover{
+
+    color:#004f3e;
+}
+
+/*****************
+DESCRIPTION
+******************/
+
+#api_upc_cid21473_iid954 .s-lc-c-evt-des{
+
+    color:#555;
+
+    font-size:14px;
+
+    line-height:1.55;
+
+    margin-bottom:8px;
+}
+
+#api_upc_cid21473_iid954 .s-lc-c-evt-des p{
+
+    margin:0 0 12px;
+}
+
+/*****************
+COLLAPSED TEXT
+******************/
+
+.description-text{
+
+    max-height:125px;
+
+    overflow:hidden;
+
+    transition:.4s;
+}
+
+.description-text.expanded{
+
+    max-height:1200px;
+}
+
+.read-more{
+
+    color:#006751;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    margin-top:10px;
+
+    display:inline-block;
+
+    user-select:none;
+}
+
+.read-more:hover{
+
+    text-decoration:underline;
+}
+
+/*****************
+DETAILS
+******************/
+
+#api_upc_cid21473_iid954 .dl-horizontal{
+
+    display:grid !important;
+
+    grid-template-columns:85px 1fr !important;
+
+    row-gap:8px !important;
+    column-gap:10px !important;
+
+    margin-top:auto;
+    padding-top:14px;
+
+    border-top:1px solid #ececec;
+
+    font-size:13px;
+}
+
+#api_upc_cid21473_iid954 .dl-horizontal dt{
+
+    float:none !important;
+    width:auto !important;
+    text-align:left !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    color:#666;
+    font-weight:700;
+
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+#api_upc_cid21473_iid954 .dl-horizontal dd{
+
+    float:none !important;
+    margin:0 !important;
+    padding:0 !important;
+
+    color:#222;
+}
+
+#api_upc_cid21473_iid954 .dl-horizontal dt i{
+
+    color:#006751;
+    width:13px;
+    text-align:center;
+    font-size:0.8em;
+    opacity:0.75;
+}
+
+/*****************
+HIDE EXTRA INFO
+******************/
+
+#api_upc_cid21473_iid954 dt:nth-of-type(n+7),
+#api_upc_cid21473_iid954 dd:nth-of-type(n+7){
+
+    display:none;
+}
+
+#api_upc_cid21473_iid954 *{
+
+    font-family:Inter,sans-serif!important;
+}
+
+#api_upc_cid21473_iid954 i[class*="fa-"]{
+
+    font-family:"Font Awesome 6 Free" !important;
+    font-weight:900 !important;
+}
+
+@media (max-width: 768px){
+
+    #api_upc_cid21473_iid954{
+
+        grid-template-columns:1fr !important;
+        gap:24px;
+        margin:32px auto;
+        padding:0 16px;
+    }
+
+    #api_upc_cid21473_iid954>.s-lc-ea-h3{
+
+        font-size:1.6rem;
+    }
+
+    #api_upc_cid21473_iid954 .media-right img{
+
+        height:180px;
+    }
+
+    #api_upc_cid21473_iid954 .media-body{
+
+        padding:18px;
+    }
+
+    #api_upc_cid21473_iid954 .media-heading a{
+
+        font-size:1.3rem;
+    }
+
+    #api_upc_cid21473_iid954 .s-lc-c-evt-des{
+
+        font-size:14px;
+    }
+
+    #api_upc_cid21473_iid954 .dl-horizontal{
+
+        grid-template-columns:90px 1fr !important;
+        font-size:13px;
+    }
+
+}
+
+  .spotlight .container {
+    gap: 12px;
+  }
+
+  .spotlight-items {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    margin-top: 0;
+  }
+
+  .spotlight-items img {
+    width: 45%;
+    max-width: 480px;
+    height: auto;
+    border-radius: 12px;
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+
+  .spotlight-items .text-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+ /* .spotlight {
+       
+
+  }
+
+  .spotlight-items{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 0.2fr));
+        gap: 2rem;
+        margin-top:0px;
+        height: auto;
+  }
+
+
+.spotlight-items h3,
+.spotlight-items p {
+    margin: 0;
+}
+
+.text-block {
+    display: flex;
+    flex-direction: column;    /* stack h3 above p 
+    justify-content: flex-start;
+}*/
+
+
+.nav-item.has-mega { position: static; }
+
+/* The big panel */
+.mega-menu {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: min(1000px, 88vw);
+
+  background: #fff;
+  padding: 32px 48px;
+  margin-top: 0;
+
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.10);
+
+  display: none;
+  z-index: 2000;
+}
+
+/* Show on hover */
+@media (min-width: 769px) {
+  .nav-item.has-mega:hover .mega-menu {
+    display: block;
+  }
+}
+
+/* Columns */
+.mega-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 60px;
+}
+
+.mega-grid.cols-2{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mega-grid.cols-4{
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px;
+}
+
+@media (max-width: 768px) {
+  .mega-grid.cols-2,
+  .mega-grid.cols-4 {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.mega-col{
+  position: relative;
+  padding-left: 22px;
+}
+
+.mega-col:not(:first-child)::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: #e7e7e7;
+}
+
+.mega-title {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #3d3d3d;
+}
+
+.mega-col a{
+  display: block;
+  padding: 10px 0;
+  text-decoration: none;
+  color: #2a2a2a;
+  font-size: 14px;
+}
+
+.mega-col a:hover{
+  text-decoration: underline;
+}
+    
+/* Nested submenu */
+.submenu{position:relative;display:inline-block;}
+.submenu-title{display:block;padding:10px 0;color:#2a2a2a;font-size:14px;cursor:pointer;}
+.dropdown .submenu-title{padding:0.5rem 1rem;font-size:0.9rem;color:#333;border-radius:6px;transition:all 0.3s ease;}
+.dropdown .submenu-title:hover{background:#f8f9fa;color:#667eea;}
+.submenu-dropdown{position:absolute;left:100%;top:0;min-width:220px;background:#fff;border-radius:10px;box-shadow:0 10px 25px rgba(0,0,0,.15);padding:10px 0;opacity:0;visibility:hidden;transform:translateX(10px);transition:.25s;z-index:3000;}
+.submenu:hover .submenu-dropdown{opacity:1;visibility:visible;transform:translateX(0);}
+.submenu-dropdown a{display:block;padding:10px 16px;color:#333;text-decoration:none;}
+.submenu-dropdown a:hover{background:#f5f5f5;}
+
+.my-account-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 6px 14px;
+  border-radius: 20px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  color: #333;
+  background: transparent;
+  border: 1px solid #d6d6d6;
+
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.my-account-btn:hover {
+  background-color: #f2f2f2;
+  border-color: #bbb;
+}
+
+
+
+.alt-search {
+    margin-top: 2rem;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Tabs */
+.alt-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.alt-tab {
+    padding: 10px 18px;
+    border-radius: 8px 8px 0 0;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    background: #f4f4f4;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.alt-tab.active {
+    background: #6b6764;
+    color: white;
+    border-color: #6b6764;
+}
+
+.alt-tab:hover {
+    background: #e9e9e9;
+}
+
+.alt-search-panel {
+    background: #ffffff;
+    padding: 22px;
+    border-radius: 0 12px 12px 12px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.alt-search-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.alt-select {
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    min-width: 160px;
+}
+
+.alt-input {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+.alt-button {
+    padding: 12px 28px;
+    border-radius: 8px;
+    border: none;
+    background: #006751;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.alt-button:hover {
+    background: #005340;
+}
+
+
+@media (max-width: 768px) {
+    .alt-search-row {
+        flex-direction: column;
+    }
+}
+
+
+
+ .collection-search{
+  --surface-color: transparent;
+  --text-color: #1a1a1a;
+  --primary-color:#006751;
+  --secondary-action:#006751;
+  max-width: 980px;
+  margin: 28px auto 0;
+}
+
+.filter-item input[type="checkbox"] {
+  accent-color: #006751;
+}
+
+.collection-title{
+  font-family: "Playfair Display", serif;
+  font-size: 44px;
+  text-align: center;
+  margin: 0 0 18px;
+  color: var(--text-color);
+}
+
+.hidden{ display:none !important; }
+
+.tablist{
+  display:flex;
+  flex-wrap:nowrap;
+  gap:4px;
+  width:100%;
+  background:#ffffff;
+  padding:10px 10px 0;
+  border-radius:16px 16px 0 0;
+  border:1px solid #e5e7eb;
+  border-bottom:0;
+}
+
+.tab-btn{
+  appearance: none;
+  -webkit-appearance: none;
+  border:none;
+  padding:10px 8px;
+  border-radius:10px;
+  font-weight:600;
+  font-size:12px;
+  cursor:pointer;
+  transition:.2s;
+  background: transparent;
+  color: #4b5563;
+  flex:1 1 auto;
+  white-space:nowrap;
+  text-align:center;
+}
+
+@media (max-width: 700px){
+  .tablist{
+    flex-wrap:wrap;
+  }
+  .tab-btn{
+    flex:1 1 auto;
+    font-size:13px;
+    padding:8px 10px;
+    margin-right: 0;
+  }
+}
+
+.tab-active{
+  background: #006751;
+  color:#fff;
+}
+
+.tab-inactive:hover{
+  background: #f0f4f2;
+}
+
+.search-panel{
+  background: rgba(0,0,0,0.5);   
+  backdrop-filter: blur(8px);             
+  -webkit-backdrop-filter: blur(10px)!important;  
+   color: white;   
+
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 16px;
+  padding: 22px;
+
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.tab-desc-wrap{
+  margin-bottom: 12px;
+  min-height: 32px;
+}
+
+
+.tab-desc{
+   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1;
+  margin: 0;
+  text-align: center;
+
+  color: #374151;       
+  opacity: 0.95;
+  transform: rotate(-0.4deg);
+}
+
+.search-row{
+  display:flex;
+  gap:12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.dropdown-select{
+  min-width: 200px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  font-weight: 500;
+  background: #ffffff;
+  color: #1f2937;
+
+  cursor: pointer;
+}
+.search-input{
+  background: #ffffff;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.search-input::placeholder{
+  color: #6b7280;
+}
+.search-input-wrap{
+  flex:1;
+  min-width: 280px;
+  position: relative;
+}
+
+.search-input{
+  width:100%;
+  padding: 12px 42px 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.search-input:focus{
+  outline:none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(139,69,19,0.12);
+}
+
+.search-icon{
+  position:absolute;
+  right:14px;
+  top:50%;
+  transform: translateY(-50%);
+  opacity:.55;
+}
+
+.search-btn{
+  padding: 12px 26px;
+  border-radius: 12px;
+  border: none;
+  font-weight:700;
+  color:#fff;
+  background: var(--secondary-action);
+  cursor:pointer;
+  box-shadow: 0 10px 18px rgba(0,0,0,.15);
+}
+
+.search-btn:hover{ filter: brightness(1.06); }
+
+.filter-options{
+  display:flex;
+  gap:18px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-top: 14px;
+}
+
+.filter-item{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+.filter-item input{
+  width:16px;
+  height:16px;
+}
+
+.advanced-link{
+  margin-left:auto;
+  background:none;
+  border:none;
+  text-decoration: underline;
+  cursor:pointer;
+  font-weight:600;
+  color: #1a1a1a;
+}
+
+.advanced-panel{
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.advanced-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:14px;
+}
+
+.advanced-panel label{
+  display:block;
+  font-size: 13px;
+  font-weight:600;
+  margin-bottom: 6px;
+  color: var(--text-color);
+}
+
+.advanced-panel input{
+  width:100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+}
+
+@media (max-width: 700px){
+  .collection-title{ font-size: 34px; }
+  .dropdown-select{ min-width: 160px; }
+  .search-input-wrap{ min-width: 220px; }
+  .advanced-grid{ grid-template-columns: 1fr; }
+}
+
+
+.hero p.tab-desc{
+  font-size: 13px;         
+  line-height: 1.5;
+  margin: 0;                
+  opacity: 1.2;
+  color: #1a1a1a;
+  text-align: left;
+  white-space: nowrap;      
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.collection-search .search-panel{
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  border-top: none !important;
+  border-radius: 0 0 16px 16px !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
+
+.tab-desc{ color:#374151; }
+
+
+</style>
+</head>
+<body>
+    <header>
+        <nav>
+  <a href="index.html" class="logo">
+    <img src="https://online.lau.edu.lb/wp-content/uploads/2021/04/LAU-logo-green.png" alt="LAU Logo">
+    <span class="logo-text">Libraries</span>
+  </a>
+
+  <button type="button" class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <ul class="nav-links" id="navLinks">
+
+    
+    <li class="nav-item">
+      <a href="https://librarycatalog.lau.edu.lb/"> Finding Materials</a>
+      <div class="dropdown">
+        <a href="https://librarycatalog.lau.edu.lb/">Library Search</a>
+        <a href="https://libguides.lau.edu.lb/az/databases?preview=cca4debe741d5531920779e9c5d30184">Online Databases</a>
+        <a href="https://sandbox03-eu.primo.exlibrisgroup.com/discovery/search?query=any,contains,hani&tab=CourseReserves&search_scope=CourseReserves&vid=961LAU_INST:961LAU_INST&offset=0">Material on Reserve</a>
+        <a href="https://laur.lau.edu.lb:8443/xmlui/">LAU Repository</a>
+        <a href="archives.html">Archives and Special Collections</a>
+      </div>
+    </li>
+
+
+  <li class="nav-item has-mega">
+  <a href="borrow-renew.html"> Using the Library</a>
+
+  <div class="mega-menu">
+    <div class="mega-grid cols-4">
+
+      <div class="mega-col">
+        <div class="mega-title">Access &amp; Borrowing</div>
+        <a href="off-campus.html">Off-campus Access to Electronic Materials</a>
+        <a href="borrow-renew.html">Borrow &amp; Renew</a>
+        <a href="ill-dd.html">Interlibrary Loan/Document Delivery</a>
+        <a href="rent-a-locker.html">Rent a Locker</a>
+        <div class="submenu"><span class="submenu-title">Suggest a Purchase ▸</span><div class="submenu-dropdown">
+          <a href="https://librarycatalog.lau.edu.lb/discovery/purchaseRequest?vid=961LAU_INST%3AVU1">Purchase Request</a>
+          <a href="https://forms.office.com/r/VP0peAeuCE">Faculty Publication</a>
+        </div>
+    </div>
+        
+         
+      </div>
+
+      <div class="mega-col">
+        <div class="mega-title">Learning Support</div>
+        <div class="submenu"><span class="submenu-title">Group Study Rooms ▸</span><div class="submenu-dropdown"><a href="http://lau.libcal.com/rooms.php?i=1566">Riyad Nassar Library</a><a href="https://lau.libcal.com/rooms.php?i=16531">Joseph G. Jabbra Library</a></div></div>
+        <a href="https://libraries.lau.edu.lb/services/writing-center.php">Writing &amp; Communication Center</a>
+        <a href="course-support.html">Course Support for Instructors</a>
+      </div>
+
+      <div class="mega-col">
+        <div class="mega-title">Technology</div>
+        <a href="Creative Space Website Prototype/index.html">Creative Space Access</a>
+        <a href="print-scan-copy.html">Print/Scan/Copy</a>
+        <a href="computers-equipment.html">Computers &amp; Equipment</a>
+      </div>
+
+      <div class="mega-col">
+        <div class="mega-title">Events</div>
+        <a href="https://lau.libcal.com/calendar?cid=21473">Workshops &amp; Events</a>
+      </div>
+
+    </div>
+  </div>
+</li>
+  
+ <li class="nav-item has-mega">
+  <a href="thesis-support.html"> Research Support</a>
+
+  <div class="mega-menu">
+    <div class="mega-grid cols-2">
+
+      <div class="mega-col">
+        <div class="mega-title">Research Basics</div>
+        <a href="thesis-support.html">Thesis Support</a>
+        <a href="framing-topic.html">Framing a Research Topic</a>
+        <a href="open-access.html">Open Access &amp; Copyright</a>
+        <a href="citation-metrics.html">Citation Metrics &amp; Publishing</a>
+        <a href="citation-help.html">Citation Help</a>
+      </div>
+
+      <div class="mega-col">
+        <div class="mega-title">Research Services</div>
+        <a href="consultations.html">Research Consultations and Tutorials</a>
+        <a href="data-analysis.html">Data Analysis and Visualization</a>
+        <a href="https://lau.libcal.com/api_events.php?m=upc&cid=21473&audience=&c=&d=80083-80235-80233-80242-80234&tags=&l=50&tar=0&simple=agenda">Information Literacy Sessions</a>
+      </div>
+
+      <!-- <div class="mega-col">
+        <div class="mega-title">More Support</div>
+        <a href="https://libraries.lau.edu.lb/services/writing-center.php">Writing &amp; Communication Center</a>
+        <a href="course-support.html">Course Support for Instructors</a>
+        <a href="chat-librarian.html">Chat with a Librarian</a>
+      </div> -->
+
+    </div>
+  </div>
+</li>
+   
+    <li class="nav-item">
+      <a href="locations.html"> Visit Us</a>
+      <div class="dropdown dropdown-visitus">
+        <a href="locations.html">Locations</a>
+        <a href="hours.html">Hours</a>
+        <!-- <div class="submenu"><span class="submenu-title">Group Study Rooms ▸</span><div class="submenu-dropdown"><a href="http://lau.libcal.com/rooms.php?i=1566">Riyad Nassar Library</a><a href="https://lau.libcal.com/rooms.php?i=16531">Joseph G. Jabbra Library</a></div></div>
+        <a href="https://libraries.lau.edu.lb/services/writing-center.php">Writing &amp; Communication Center</a>
+        <a href="Creative Space Website Prototype/index.html">Creative Spaces</a>
+      </div> -->
+    </li>
+
+   
+    <li class="nav-item">
+      <a href="history.html"> About</a>
+      <div class="dropdown dropdown-about">
+        <a href="history.html">Our History</a>
+        <a href="mission.html">Mission, Vision, Values</a>
+        <a href="strategic-plan.html">Strategic Plan</a>
+        <a href="staff-admin.html">Staff &amp; Administration</a>
+        <a href="policies.html">Policies &amp; Guidelines</a>
+        <!--<a href="news-events.html">News &amp; Events</a>-->
+        <a href="https://libraries.lau.edu.lb/donate/index.php">Give to the LAU Libraries</a>
+        
+      </div>
+    </li>
+
+  </ul>
+
+ 
+  <a href="https://iam.lau.edu.lb/isam/sps/LAUIDP/saml20/login?SAMLRequest=jZLRb9owEMb%2FlcjvxInTks4iVKEBDYlNtJQ97O2aHNSSY2c%2Bh63%2F%2FUwiNPZS8WbZ93333e88e%2FzT6uiEjpQ1BUvjhEVoatsocyzY%2FnU1eWCP8xlBqztZ9v7dvOCvHslHQWdIDg8F652RFkiRNNAiSV%2FLXfltI0WcyM5Zb2urWVQSofOh0ZM11LfoduhOqsb9y6Zg7953JDnX6s2B%2B6jBg7bHWEMfY9PH%2Bo235si7hr6CaTRu7FEZFlUhijLgh%2FQXCwXttU6FkJw64ptyv662%2FJxZJFyPDivrahwmK9gBNCGL1lXBynwh7lfL7G45DScxFctskSzyu%2BpLvhLTLK%2Bga5I01NIWiNQJ%2F6mJelwb8mB8wUQippMknyTpa5rKNJPpfZxkDz9Z9OMCPUBiI2I5aN0V28%2FRwgUom9%2BGb5h5xq96jY1FJ78H90DHalV%2FXAUQt29Xa%2Fv7ySH4wMK7Hge2LfjPDc43qpkchlLpHRhSaDyLdttzpOcetDoodLf%2BkHGtfD5O%2Bf%2Bnnf8F&amp;RelayState=primaws%40%40961LAU_INST" class="my-account-btn">
+  My Account
+    </a>
+</nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover. Create. <span style="color:#4ade80;">Connect.</span></h1>
+<p>Your gateway to <strong>academic excellence</strong> and research innovation.</p>
+           <div class="search-container alt-search">
+    
+
+   
+
+  <div class="collection-search">
+
+
+  <div class="tablist" role="tablist">
+    <button class="tab-btn tab-inactive" data-tab="catalog" role="tab" aria-selected="false">📖 Library Catalog</button>
+    <button class="tab-btn tab-active" data-tab="everything" role="tab" aria-selected="true">🌐 Everything</button>
+    <button class="tab-btn tab-inactive" data-tab="articles" role="tab" aria-selected="false">📄 Articles</button>
+    <button class="tab-btn tab-inactive" data-tab="ebooks" role="tab" aria-selected="false">💻 E-Books</button>
+    <button class="tab-btn tab-inactive" data-tab="repository" role="tab" aria-selected="false">🗄️ Repository</button>
+  </div>
+
+  
+  <div class="search-panel">
+
+    <div id="tab-descriptions" class="tab-desc-wrap">
+      <p id="desc-everything" class="tab-desc">Search across all library resources including books, journals, articles, and digital media.</p>
+      <p id="desc-catalog" class="tab-desc hidden">Search the library catalog for physical and digital books available at LAU Libraries.</p>
+      <p id="desc-articles" class="tab-desc hidden">Access scholarly and academic articles from our collection.</p>
+      <p id="desc-ebooks" class="tab-desc hidden">Browse and search our e-book collection.</p>
+      <p id="desc-repository" class="tab-desc hidden">Search the LAU Repository for theses, faculty publications, and scholarly work.</p>
+    </div>
+
+    <form id="search-form" class="search-form">
+      <div class="search-row">
+
+        <select id="search-field" class="dropdown-select">
+          <option value="all">All Fields</option>
+          <option value="title">Title</option>
+          <option value="author">Author</option>
+          <option value="subject">Subject</option>
+          <option value="isbn">ISBN/ISSN</option>
+          <option value="keyword">Keyword</option>
+        </select>
+
+        <div class="search-input-wrap">
+          <input type="text" id="search-input" class="search-input" placeholder="Search books, articles, journals...">
+          <span class="search-icon">🔍</span>
+        </div>
+
+        <button type="submit" class="search-btn">Search</button>
+      </div>
+      <div id="filter-options" class="filter-options">
+        <label class="filter-item" id="wrap-held-by-library">
+          <input type="checkbox" id="held-by-library">
+          <span>Held by library</span>
+        </label>
+
+        <label class="filter-item" id="wrap-peer-reviewed">
+          <input type="checkbox" id="peer-reviewed">
+          <span>Peer-reviewed</span>
+        </label>
+
+        <label class="filter-item" id="wrap-available-online">
+          <input type="checkbox" id="available-online">
+          <span>Available online</span>
+        </label>
+
+        <button type="button" id="advanced-toggle" class="advanced-link">Advanced Search</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+</div>
+        </div>
+
+        <br>
+
+        <section class="hours-section">
+<div class="container" id="open">
+        <h2 class="section-title"><i class="fa-regular fa-clock"></i> Library Hours</h2>
+    <div class="hours-grid">
+        <div class="hours-card" id="card-riyad">
+            <h3>Riyad Nassar Library</h3>
+            <div class="time">7:30 AM - 5:00 PM</div>
+            <div class="status open"><span class="dot"></span>Open</div>
+            <a href="hours.html" class="card-hours-link">View Opening Hours <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="hours-card" id="card-jabbra">
+            <h3>Joseph G. Jabbra Library</h3>
+            <div class="time">7:30 AM - 5:00 PM</div>
+            <div class="status open"><span class="dot"></span>Open</div>
+            <a href="hours.html" class="card-hours-link">View Opening Hours <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="hours-card" id="card-health">
+            <h3>Health Sciences Library</h3>
+            <div class="time">7:30 AM - 2:30 PM</div>
+            <div class="status closed"><span class="dot"></span>Closed</div>
+            <a href="hours.html" class="card-hours-link">View Opening Hours <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="hours-card" id="card-beirut">
+            <h3>Chat with a Librarian</h3>
+            <div class="time">7:30 AM - 2:30 PM</div>
+            <div class="status open"><span class="dot"></span>Open</div>
+            <a href="chat-librarian.html" class="card-hours-link">Start Chat <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+            <div id="lc-hours-data" aria-hidden="true">
+                <div id="api_hours_today_iid954_lid0"></div>
+                <script src="https://lau.libcal.com/api_hours_today.php?lid=0&format=js&systemTime=1&context=object"></script>
+            </div>
+            <script>
+            (function () {
+                var cardMap = {
+                    'Riyad Nassar': ['card-riyad'],
+                    'Joseph': ['card-jabbra'],
+                    'Health Sciences': ['card-health', 'card-beirut']
+                };
+
+                function parseTimeToMinutes(str) {
+                    var m = str.trim().match(/(\d{1,2}):(\d{2})\s*([ap]m)/i);
+                    if (!m) return null;
+                    var hour = parseInt(m[1], 10);
+                    var min = parseInt(m[2], 10);
+                    var ap = m[3].toLowerCase();
+                    if (ap === 'pm' && hour !== 12) hour += 12;
+                    if (ap === 'am' && hour === 12) hour = 0;
+                    return hour * 60 + min;
+                }
+
+                function updateCard(cardId, rawText) {
+                    var card = document.getElementById(cardId);
+                    if (!card) return;
+                    var timeEl = card.querySelector('.time');
+                    var statusEl = card.querySelector('.status');
+                    var text = rawText.replace(/\s+/g, ' ').trim();
+
+                    if (/closed/i.test(text)) {
+                        timeEl.textContent = 'Closed';
+                        statusEl.textContent = 'Closed';
+                        statusEl.className = 'status closed';
+                        return;
+                    }
+
+                    timeEl.textContent = text;
+                    var parts = text.split(/[\u2013\u2010-]/);
+                    if (parts.length === 2) {
+                        var startMin = parseTimeToMinutes(parts[0]);
+                        var endMin = parseTimeToMinutes(parts[1]);
+                        if (startMin !== null && endMin !== null) {
+                            var now = new Date();
+                            var nowMin = now.getHours() * 60 + now.getMinutes();
+                            var isOpen = nowMin >= startMin && nowMin < endMin;
+                            statusEl.textContent = isOpen ? 'Open' : 'Closed';
+                            statusEl.className = 'status ' + (isOpen ? 'open' : 'closed');
+                        }
+                    }
+                }
+
+                function applyLiveHours() {
+                    var rows = document.querySelectorAll('#lc-hours-data table.hours-today tbody tr');
+                    if (!rows.length) return false;
+                    rows.forEach(function (row) {
+                        var nameEl = row.querySelector('th');
+                        var timeEl = row.querySelector('td');
+                        if (!nameEl || !timeEl) return;
+                        var name = nameEl.textContent.trim();
+                        for (var key in cardMap) {
+                            if (name.indexOf(key) !== -1) {
+                                cardMap[key].forEach(function (cardId) {
+                                    updateCard(cardId, timeEl.textContent);
+                                });
+                            }
+                        }
+                    });
+                    return true;
+                }
+
+                var attempts = 0;
+                var pollId = setInterval(function () {
+                    attempts++;
+                    if (applyLiveHours() || attempts > 20) {
+                        clearInterval(pollId);
+                    }
+                }, 500);
+            })();
+            </script>
+        </div>
+    </section>
+           
+    </section>
+
+    <section class="quick-access">
+
+
+        <div class="container">
+            
+            <!--<h2 class="section-title">Popular Services</h2>-->
+            <div class="services-grid">
+                <!-- <div class="service-card">
+                    <span class="service-icon">📖</span>
+                    <h3>One-Search</h3>
+                    <p>Search our comprehensive collection of books, e-books, and digital resources</p>
+                    <a href="https://librarycatalog.lau.edu.lb/discovery/search?vid=961LAU_INST:VU1" class="btn">Browse Catalog</a>
+                </div> -->
+                <div class="service-card">
+                    <!-- <span class="service-icon">🛠️</span> -->
+                    <h3>Creative Space</h3>
+                    <p>3D printing, laser cutting, podcasting, and digital media production studio</p>
+                    <a href="Creative Space Website Prototype/index.html" class="btn">Book Equipment</a>
+                </div>
+                 <div class="service-card">
+                    <!-- <span class="service-icon">📚</span> -->
+                    <h3>Writing and Communication Center</h3>
+                    <p>Whether you are brainstorming or drafting we are here for you. </p>
+                    <a href="https://libraries.lau.edu.lb/services/writing-center.php" class="btn">Book Your Session</a>
+                </div>
+                
+                <!-- <div class="service-card">
+                    <span class="service-icon">🎓</span>
+                    <h3>Research Assist</h3>
+                    <p>Need Help? <br> Meet our professionals who are ready to help and assist you.</p>
+                    <a href="https://lau.libcal.com/appointments" class="btn">Register Now</a>
+                </div> -->
+                <!--<div class="service-card">
+                    <span class="service-icon">📰</span>
+                    <h3>Library News</h3>
+                    <p>Stay updated with new resources, events, and library announcements</p>
+                    <a href="#" class="btn">Read News</a>
+                </div>-->
+                 <!-- <div class="service-card">
+                    <span class="service-icon">🎓</span>
+                    <h3>Information Literacy Sessions</h3>
+                    <p>Learn research skills, citation methods, and database usage<br><br></p>
+                    <a href="https://lau.libcal.com/api_events.php?m=upc&cid=21473&audience=&c=&d=80083-80235-80233-80242-80234&tags=&l=50&tar=0&simple=agenda" class="btn">Register Now</a>
+                </div> -->
+              
+               <div class="service-card">
+                    <!-- <span class="service-icon">🏠</span> -->
+                    <h3>Study Spaces</h3>
+                    <p>Book group study rooms and find quiet spaces for focused learning <br> <br></p>
+                    <a href="group-rooms.html" class="btn">Reserve Room</a>
+                </div>
+                <div class="service-card">
+                    <!-- <span class="service-icon">🖨️</span> -->
+                    <h3>Print & Scan</h3>
+                    <p>Printing, copying, and scanning services available at all locations<br><br></p>
+                    <a href="https://webapps.lau.edu.lb/ocrs" class="btn">Add Credit</a>
+                </div>
+                <!-- <div class="service-card">
+                    <span class="service-icon">📚</span>
+                    <h3>Material on Reserve</h3>
+                    <p>Access textbooks and materials placed on reserve by your professors</p>
+                    <a href="https://sandbox03-eu.primo.exlibrisgroup.com/discovery/search?query=any,contains,hani&tab=CourseReserves&search_scope=CourseReserves&vid=961LAU_INST:961LAU_INST&offset=0" class="btn">View Reserves</a>
+                </div>  -->
+                  
+            </div>
+        </div>
+        
+
+
+    </section>
+<!-- <section>
+
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+ Explore Section 
+    <section class="explore-section">
+        <div class="container">
+            <div class="section-header">
+                <h1>Explore Our Collections</h1>
+                <p>Dive into a world of knowledge with our comprehensive academic resources</p>
+            </div>
+
+            <div class="card-grid">
+                
+                <article class="card">
+                    <div class="icon-box"><i class="fa-solid fa-book-open"></i></div>
+                    <h3>Books & E-Books</h3>
+                    <p>Access millions of academic texts and digital publications</p>
+                    <span class="stat">2.5M+ titles</span>
+                </article>
+
+                
+                <article class="card">
+                    <div class="icon-box"><i class="fa-solid fa-file-lines"></i></div>
+                    <h3>Research Articles</h3>
+                    <p>Peer-reviewed journals and scholarly papers</p>
+                    <span class="stat">50M+ articles</span>
+                </article>
+
+               
+                <article class="card">
+                    <div class="icon-box"><i class="fa-solid fa-database"></i></div>
+                    <h3>Databases</h3>
+                    <p>Premium research databases and repositories</p>
+                    <span class="stat">300+ databases</span>
+                </article>
+
+            
+                <article class="card">
+                    <div class="icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h3>Theses & Dissertations</h3>
+                    <p>Graduate research from universities worldwide</p>
+                    <span class="stat">5M+ works</span>
+                </article>
+
+                <article class="card">
+                    <div class="icon-box"><i class="fa-solid fa-newspaper"></i></div>
+                    <h3>News & Magazines</h3>
+                    <p>Current events and industry publications</p>
+                    <span class="stat">10K+ sources</span>
+                </article>
+
+          
+                <article class="card">
+                    <div class="icon-box"><i class="fa-solid fa-video"></i></div>
+                    <h3>Multimedia</h3>
+                    <p>Educational videos, podcasts, and lectures</p>
+                    <span class="stat">500K+ items</span>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-banner">
+        <div class="container stats-grid">
+            <div class="stat-item">
+                <i class="fa-solid fa-book"></i>
+                <div class="number" data-target="58">0</div>
+                <div class="label">Resources Available</div>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-users"></i>
+                <div class="number" data-target="2.3">0</div>
+                <div class="label">Active Researchers</div>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-ribbon"></i>
+                <div class="number" data-target="500">0</div>
+                <div class="label">Partner Institutions</div>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-globe"></i>
+                <div class="number" data-target="150">0</div>
+                <div class="label">Countries Reached</div>
+            </div>
+        </div>
+    
+
+    <script src="script.js"></script>
+
+</section>-->
+   <!-- <section class="hours-section">
+        <div class="container">
+            <h2 class="section-title">Library Hours</h2>
+            <div class="hours-grid">
+                <div class="hours-card">
+                    <h3>Riyad Nassar Library</h3>
+                    <div class="time">7:30 AM - 5:00 PM</div>
+                    <div class="status open">Open</div>
+                </div>
+                <div class="hours-card">
+                    <h3>Joseph G. Jabbra Library</h3>
+                    <div class="time">7:30 AM - 5:00 PM</div>
+                    <div class="status open">Open</div>
+                </div>
+                <div class="hours-card">
+                    <h3>Health Sciences Library</h3>
+                    <div class="time">7:30 AM - 2:30 PM</div>
+                    <div class="status closed">Closed</div>
+                </div>
+                <div class="hours-card">
+                    <h3>NY Academic Center</h3>
+                    <div class="time">9:00 AM - 9:00 PM</div>
+                    <div class="status open">Open</div>
+                </div>
+            </div>
+        </div>
+    </section>-->
+
+
+    <!-- Spotlight Section -->
+<section class="spotlight">
+    <div class="container">
+       <!-- <h1>Upcoming Events</h1> -->
+        <div class="spotlight-items">
+            <div id="api_upc_cid21473_iid954"></div>
+            <script src="https://lau.libcal.com/api_events.php?m=upc&cid=21473&audience=&c=&d=&tags=&l=3&tar=0&simple=image&context=object&format=js"></script>
+        </div>
+  </div>
+</section>
+
+<br>
+<br>
+
+<!-- News & Events Section -->
+<section class="news-events">
+     <div class="container">
+  <h1>News & Updates</h1>
+  <div class="services-grid" id="news-title">
+    <div class="service-card" >
+    <a href="https://news.lau.edu.lb/2025/family-business-leaders-reflect-on-succession-planning-continuity-and-governance-in-times-of-change.php">
+        <img src="images/12560.jpg"  width="350" height="200">
+        <h4 class="btn2">Family Business Leaders Reflect on Succession Planning, Continuity and Governance in Times of Change</h4>
+        <P>A panel at LAU explored the complexities of succession planning and the cultural, structural and human factors that shape the future of family enterprises.</P>
+      </a>
+    </div>
+     <div class="service-card" >
+    <a href="https://news.lau.edu.lb/2025/family-business-leaders-reflect-on-succession-planning-continuity-and-governance-in-times-of-change.php">
+        <img src="images/12560.jpg"  width="350" height="200">
+        <h4 class="btn2">Family Business Leaders Reflect on Succession Planning, Continuity and Governance in Times of Change</h4>
+        <P>A panel at LAU explored the complexities of succession planning and the cultural, structural and human factors that shape the future of family enterprises.</P>
+      </a>
+    </div> <div class="service-card" >
+    <a href="https://news.lau.edu.lb/2025/family-business-leaders-reflect-on-succession-planning-continuity-and-governance-in-times-of-change.php">
+        <img src="images/12560.jpg"  width="350" height="200">
+        <h4 class="btn2">Family Business Leaders Reflect on Succession Planning, Continuity and Governance in Times of Change</h4>
+        <P>A panel at LAU explored the complexities of succession planning and the cultural, structural and human factors that shape the future of family enterprises.</P>
+      </a>
+    </div> 
+
+  </div>
+</section>
+
+
+<br>
+<br>
+
+<!-- Archives & Special Collections section - hidden per request, code kept intentionally
+<section class="special-products">
+        <div class="container">
+            <h1 class="section-title2">Archives & Special Collections</h1>
+            <div class="archives-container">
+                <div class="swiper-container">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="images/3.jpg"" alt="Yearbooks Collection">
+                                <div class="slide-overlay">
+                                    <h3 style="color: white; margin-bottom: 0.5rem;">LAU Yearbooks: Trireme</h3>
+                                    <p style="color: rgba(255,255,255,0.9);">A visual journey through LAU's living history—capturing campus life, people, and moments from 1937 to 2015.</p>
+                                       <a href="archives.html" class="details-btn">More details</a>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="images/2.jpg" alt="Manuscript Collection">
+                                <div class="slide-overlay">
+                                    <h3 style="color: white; margin-bottom: 0.5rem;">Georgette Gebara Collection</h3>
+                                    <p style="color: rgba(255,255,255,0.9);">Discover the legacy of Georgette Gebara through this digital archive, showcasing her remarkable career as an internationally renowned Lebanese dancer, choreographer, and educator.</p>
+                                    <a href="archives.html" class="details-btn">More details</a>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="images/1.jpg" alt="Photography Archive">
+                                <div class="slide-overlay">
+                                    <h3 style="color: white; margin-bottom: 0.5rem;">LAU Photographs Collection</h3>
+                                    <p style="color: rgba(255,255,255,0.9);">A visual journey through LAU’s history, from the American Junior College for Women and Beirut College for Women to today.</p>
+                                    <a href="archives.html" class="details-btn">More details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+                <div class="archives-links">
+                    <a href="archives.html#digital-collections" class="archive-link">
+                        <i class="fas fa-digital-tachograph"></i>
+                        <span>Digital Collections</span>
+                    </a>
+                    <a href="archives.html#special-collections" class="archive-link">
+                        <i class="fas fa-archive"></i>
+                        <span>Special Collections</span>
+                    </a>
+                    <a href="archives.html#theses-collection" class="archive-link">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Thesis & Dissertations</span>
+                    </a>
+                    <a href="archives.html#special-collections" class="archive-link">
+                        <i class="fas fa-search"></i>
+                        <span>Finding Aids</span>
+                    </a>
+                   
+                </div>
+            </div>
+        </div>
+</section>
+-->
+   <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                        <a href="https://librarycatalog.lau.edu.lb/"><i class="fas fa-search"></i> One-Search</a>
+                        <a href="news-events.html"><i class="fas fa-calendar"></i> Events</a>
+                        <a href="chat-librarian.html"><i class="fas fa-question-circle"></i> FAQs</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <div class="footer-links">
+                        <a href="borrow-renew.html"><i class="fas fa-book"></i> Borrow & Renew</a>
+                        <a href="print-scan-copy.html"><i class="fas fa-print"></i> Print & Scan</a>
+                        <a href="computers-equipment.html"><i class="fas fa-desktop"></i> Computers</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <div class="footer-links">
+                        <a href="https://libguides.lau.edu.lb/az/databases?preview=cca4debe741d5531920779e9c5d30184"><i class="fas fa-database"></i> Databases</a>
+                        <a href="https://sandbox03-eu.primo.exlibrisgroup.com/discovery/search?query=any,contains,hani&tab=CourseReserves&search_scope=CourseReserves&vid=961LAU_INST:961LAU_INST&offset=0"><i class="fas fa-bookmark"></i> Material on Reserve</a>
+                        <a href="framing-topic.html"><i class="fas fa-graduation-cap"></i> Research Guides</a>
+                        <a href="archives.html#digital-collections"><i class="fas fa-archive"></i> Digital Collections</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <div class="footer-links">
+                        <a href="locations.html"><i class="fas fa-map-marker-alt"></i> Locations</a>
+                        <a href="hours.html"><i class="fas fa-clock"></i> Hours</a>
+                        <a href="tel:+9611786456"><i class="fas fa-phone"></i> (961) 1-786456</a>
+                        <a href="mailto:libraries@lau.edu.lb"><i class="fas fa-envelope"></i> libraries@lau.edu.lb</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Lebanese American University Libraries. All rights reserved.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.85rem;">Committed to academic excellence and research innovation</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- <a href="chat-librarian.html" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+        <span>Chat with Librarian</span>
+    </a> -->
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper
+        const swiper = new Swiper('.mySwiper', {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            },
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('mobile-open');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('navLinks').classList.remove('mobile-open');
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+                header.style.padding = '0.5rem 0';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = 'var(--shadow)';
+                header.style.padding = '0';
+            }
+        });
+
+        // Animate elements on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.service-card, .news-card, .hours-card');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'slideInUp 0.8s ease-out forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', animateOnScroll);
+
+       // Real-time hours update
+        // function updateHoursStatus() {
+        //     const now = new Date();
+        //     const currentHour = now.getHours();
+        //     const currentDay = now.getDay(); // 0 = Sunday, 6 = Saturday
+        
+        //     document.querySelectorAll('.hours-card').forEach(card => {
+        //         const status = card.querySelector('.status');
+        //         const timeText = card.querySelector('.time').textContent;
+
+        //         // Simple logic for demo - in reality, this would parse actual hours
+        //         const isWeekend = currentDay === 0 || currentDay === 6;
+        //         const isOpen = currentHour >= 7 && currentHour < 22 && !isWeekend;
+                
+        //         if (isOpen) {
+        //             status.textContent = 'Open Now';
+        //             status.className = 'status open';
+        //         } else {
+        //             status.textContent = 'Closed';
+        //             status.className = 'status closed';
+        //         }
+        //     });
+        // }
+
+        document.querySelectorAll('.mega-title').forEach(title => {
+  
+  });
+  
+
+
+
+
+// ===== Tabs Search (tabs + per-tab filters + real links to the LAU Libraries systems) =====
+document.addEventListener("DOMContentLoaded", () => {
+  const tabButtons = document.querySelectorAll(".tab-btn");
+
+  const descriptions = {
+    everything: document.getElementById("desc-everything"),
+    catalog: document.getElementById("desc-catalog"),
+    articles: document.getElementById("desc-articles"),
+    ebooks: document.getElementById("desc-ebooks"),
+    repository: document.getElementById("desc-repository"),
+  };
+
+  // Filter row elements
+  const filterRow = document.getElementById("filter-options");
+  const filterWraps = {
+    "held-by-library": document.getElementById("wrap-held-by-library"),
+    "peer-reviewed": document.getElementById("wrap-peer-reviewed"),
+    "available-online": document.getElementById("wrap-available-online"),
+  };
+  const advancedBtn = document.getElementById("advanced-toggle");
+  const searchField = document.getElementById("search-field");
+  const searchInput = document.getElementById("search-input");
+  const searchForm = document.getElementById("search-form");
+
+  const PRIMO_BASE = "https://librarycatalog.lau.edu.lb/discovery/search";
+  const PRIMO_VID = "961LAU_INST:VU1";
+
+  const tabConfig = {
+    everything: {
+      filters: ["held-by-library", "peer-reviewed", "available-online"],
+      placeholder: "Search books, articles, journals...",
+      target: { type: "primo", tab: "Everything", scope: "MyInst_and_CI" },
+    },
+    catalog: {
+      filters: ["held-by-library"],
+      placeholder: "Search the library catalog...",
+      target: { type: "primo", tab: "LibraryCatalog", scope: "MyInstitution" },
+    },
+    articles: {
+      filters: ["peer-reviewed", "available-online"],
+      placeholder: "Search scholarly articles...",
+      target: { type: "primo", tab: "CentralIndex", scope: "Articles" },
+    },
+    ebooks: {
+      filters: [],
+      placeholder: "Search e-books...",
+      target: { type: "primo", tab: "E_Books", scope: "E_books" },
+    },
+    repository: {
+      filters: [],
+      placeholder: "Search the LAU Repository...",
+      target: { type: "primo", tab: "LAU_DSPACE", scope: "LAU_DSPACE" },
+    },
+  };
+
+  let currentTab = "everything";
+
+  function setActiveTab(tabName) {
+    currentTab = tabName;
+
+    // 1) button styles
+    tabButtons.forEach((btn) => {
+      const isActive = btn.dataset.tab === tabName;
+      btn.classList.toggle("tab-active", isActive);
+      btn.classList.toggle("tab-inactive", !isActive);
+      btn.setAttribute("aria-selected", isActive ? "true" : "false");
+    });
+
+    // 2) descriptions
+    Object.keys(descriptions).forEach((key) => {
+      descriptions[key]?.classList.toggle("hidden", key !== tabName);
+    });
+
+    // 3) filters shown for this tab (Advanced Search stays visible on every tab)
+    const cfg = tabConfig[tabName];
+    filterRow.style.display = "flex";
+    Object.keys(filterWraps).forEach((key) => {
+      const wrap = filterWraps[key];
+      if (wrap) wrap.style.display = cfg.filters.includes(key) ? "flex" : "none";
+    });
+    if (advancedBtn) advancedBtn.style.display = "inline-block";
+
+    // 4) input placeholder
+    if (searchInput) searchInput.placeholder = cfg.placeholder;
+
+    // 5) dropdown default
+    if (searchField) searchField.value = "all";
+  }
+
+  // click handling
+  tabButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      setActiveTab(btn.dataset.tab);
+    });
+  });
+
+  // initial
+  setActiveTab("everything");
+
+  /* ---------------------------------------------------------------------
+     BUILD THE RESULTS LINK
+     Reads the current tab, search term, and checked filters, and builds
+     a link to the matching LAU Libraries system (Primo catalog, LAU
+     Repository, or Research Guides) with those filters applied.
+  --------------------------------------------------------------------- */
+  function getCheckedFilters() {
+    const checked = [];
+    if (document.getElementById("held-by-library")?.checked) checked.push("held-by-library");
+    if (document.getElementById("peer-reviewed")?.checked) checked.push("peer-reviewed");
+    if (document.getElementById("available-online")?.checked) checked.push("available-online");
+    return checked;
+  }
+
+  function buildResultsUrl(tabName, term, filters, advanced) {
+    const cfg = tabConfig[tabName];
+    const t = cfg.target;
+    const q = encodeURIComponent(term || "");
+
+    const params = [
+      "query=any,contains," + q,
+      "tab=" + encodeURIComponent(t.tab),
+      "search_scope=" + encodeURIComponent(t.scope),
+      "vid=" + encodeURIComponent(PRIMO_VID),
+      "offset=0",
+    ];
+    if (filters.includes("peer-reviewed")) params.push("mfacet=tlevel,include,peer_reviewed,1");
+    if (filters.includes("held-by-library")) params.push("mfacet=tlevel,include,available_p,1");
+    if (filters.includes("available-online")) params.push("mfacet=tlevel,include,online_resources,1");
+    if (advanced) params.push("mode=advanced");
+    return PRIMO_BASE + "?" + params.join("&");
+  }
+
+  function goToResults(advanced) {
+    const term = searchInput ? searchInput.value.trim() : "";
+    const filters = getCheckedFilters();
+    const url = buildResultsUrl(currentTab, term, filters, advanced);
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
+  // Search button / Enter key -> normal search with current filters
+  if (searchForm) {
+    searchForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      goToResults(false);
+    });
+  }
+
+  // Advanced Search -> links directly to the LAU Libraries advanced search
+  // for the current tab, carrying over the search term and any filters
+  if (advancedBtn) {
+    advancedBtn.addEventListener("click", () => {
+      goToResults(true);
+    });
+  }
+});
+
+
+
+
+ 
+
+    </script>
+
+    <script>
+        // Mobile navigation: hamburger + accordion sections + relocated "My Account"
+        (function () {
+            var toggleBtn = document.getElementById('mobileMenuToggle');
+            var navLinks = document.getElementById('navLinks');
+            var navEl = document.querySelector('header nav');
+            if (!toggleBtn || !navLinks || !navEl) return;
+
+            // ---- Hamburger open/close ----
+            function setMenuOpen(isOpen) {
+                navLinks.classList.toggle('mobile-open', isOpen);
+                toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                var icon = toggleBtn.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-bars', !isOpen);
+                    icon.classList.toggle('fa-xmark', isOpen);
+                }
+                if (!isOpen) {
+                    navLinks.querySelectorAll('.mobile-expanded').forEach(function (el) {
+                        el.classList.remove('mobile-expanded');
+                    });
+                    navLinks.querySelectorAll('.mobile-dropdown-toggle').forEach(function (btn) {
+                        btn.setAttribute('aria-expanded', 'false');
+                    });
+                }
+            }
+
+            toggleBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                setMenuOpen(!navLinks.classList.contains('mobile-open'));
+            });
+
+            // ---- Accordion: top-level sections (Finding Materials, Using the Library, etc.) ----
+            navLinks.querySelectorAll(':scope > .nav-item').forEach(function (item) {
+                var panel = item.querySelector(':scope > .dropdown, :scope > .mega-menu');
+                var link = item.querySelector(':scope > a');
+                if (!panel || !link) return;
+
+                var row = document.createElement('div');
+                row.className = 'mobile-row';
+
+                var arrowBtn = document.createElement('button');
+                arrowBtn.type = 'button';
+                arrowBtn.className = 'mobile-dropdown-toggle';
+                arrowBtn.setAttribute('aria-label', 'Show ' + link.textContent.trim() + ' submenu');
+                arrowBtn.setAttribute('aria-expanded', 'false');
+                arrowBtn.innerHTML = '<i class="fas fa-chevron-down"></i>';
+
+                item.insertBefore(row, link);
+                row.appendChild(link);
+                row.appendChild(arrowBtn);
+
+                arrowBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var isOpen = item.classList.toggle('mobile-expanded');
+                    arrowBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                });
+            });
+
+            // ---- Nested accordion: "Suggest a Purchase", "Group Study Rooms", etc. ----
+            navLinks.querySelectorAll('.submenu').forEach(function (submenu) {
+                var title = submenu.querySelector(':scope > .submenu-title');
+                if (!title) return;
+                title.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    submenu.classList.toggle('mobile-expanded');
+                });
+            });
+
+            // ---- Close the menu after tapping an actual link (not an arrow/toggle) ----
+            navLinks.addEventListener('click', function (e) {
+                if (e.target.tagName === 'A') {
+                    setMenuOpen(false);
+                }
+            });
+
+            // ---- Close when tapping outside the menu ----
+            document.addEventListener('click', function (e) {
+                if (navLinks.classList.contains('mobile-open') &&
+                    !navLinks.contains(e.target) &&
+                    e.target !== toggleBtn &&
+                    !toggleBtn.contains(e.target)) {
+                    setMenuOpen(false);
+                }
+            });
+
+            // ---- Move "My Account" into the top of the mobile menu, restore it on desktop ----
+            var acct = navEl.querySelector(':scope > .my-account-btn');
+            if (acct) {
+                var acctAnchor = document.createElement('span');
+                acctAnchor.style.display = 'none';
+                acct.parentNode.insertBefore(acctAnchor, acct);
+
+                var acctItem = document.createElement('li');
+                acctItem.className = 'nav-item mobile-account-item';
+
+                function placeAccountForViewport() {
+                    if (window.innerWidth <= 768) {
+                        if (acct.parentNode !== acctItem) {
+                            acctItem.appendChild(acct);
+                        }
+                        if (navLinks.firstChild !== acctItem) {
+                            navLinks.insertBefore(acctItem, navLinks.firstChild);
+                        }
+                    } else if (acct.parentNode !== acctAnchor.parentNode) {
+                        acctAnchor.parentNode.insertBefore(acct, acctAnchor.nextSibling);
+                    }
+                }
+
+                placeAccountForViewport();
+                window.addEventListener('resize', placeAccountForViewport);
+            }
+
+            // ---- Reset everything if the window is resized back to desktop ----
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 768) {
+                    setMenuOpen(false);
+                }
+            });
+        })();
+    </script>
+
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    document.querySelectorAll("#api_upc_cid21473_iid954 .s-lc-c-evt-des")
+    .forEach(desc => {
+
+        const paragraphs = desc.innerHTML;
+
+        desc.innerHTML = `
+            <div class="description-text">
+                ${paragraphs}
+            </div>
+
+            <span class="read-more">
+                Read More
+            </span>
+        `;
+
+        const text = desc.querySelector(".description-text");
+        const btn = desc.querySelector(".read-more");
+
+        btn.onclick = () => {
+
+            text.classList.toggle("expanded");
+
+            btn.textContent = text.classList.contains("expanded")
+                ? "Show Less"
+                : "Read More";
+
+        };
+
+    });
+
+});
+
+document.querySelectorAll("#api_upc_cid21473_iid954 dt")
+.forEach(dt=>{
+
+const txt=dt.textContent.trim();
+
+if(txt.includes("From"))
+dt.innerHTML='<i class="fa-solid fa-calendar"></i> From';
+
+if(txt.includes("To"))
+dt.innerHTML='<i class="fa-solid fa-clock"></i> To';
+
+if(txt.includes("Presenter"))
+dt.innerHTML='<i class="fa-solid fa-user"></i> Presenter';
+
+if(txt.includes("Location"))
+dt.innerHTML='<i class="fa-solid fa-location-dot"></i> Location';
+
+if(txt.includes("Campus"))
+dt.innerHTML='<i class="fa-solid fa-building"></i> Campus';
+
+if(txt.includes("Audiences"))
+dt.innerHTML='<i class="fa-solid fa-users"></i> Audience';
+
+});
+</script>
+</body>
+
+<div id="tab-gap" class="hidden"></div>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Printing - LAU Creative Space Lab</title>
+    
+    <!-- Fonts and Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           BASE STYLES (From Main Prototype)
+           ========================================================================== */
+        :root {
+            --primary-color: #006751;
+            --primary-light: #00b386;
+            --primary-dark: #004d35;
+            --text-dark: #333;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --bg-gray: #e9ecef;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            min-height: 100vh;
+        }
+
+        /* ==========================================================================
+           MAIN LIBRARY HEADER
+           ========================================================================== */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+        .logo img { height: 40px; width: auto; }
+        .logo-text { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); }
+
+        .nav-links { display: flex; list-style: none; gap: 0px; position: relative; }
+        .nav-links > li > a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 400;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.9rem; 
+        }
+        .nav-links > li > a:hover { color: var(--primary-color); background: rgba(0, 103, 81, 0.10); }
+
+        .nav-item { position: relative; }
+        .dropdown {
+            position: absolute; top: 100%; left: 0; background: white; border-radius: 12px;
+            box-shadow: var(--shadow); padding: 1rem; min-width: 200px;
+            opacity: 0; visibility: hidden; transform: translateY(-10px); transition: var(--transition); z-index: 1000;
+        }
+        .nav-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown a { display: block; padding: 0.5rem 1rem; border-radius: 6px; color: var(--text-dark); text-decoration: none;}
+        .dropdown a:hover { background: var(--bg-light); color: var(--primary-color); }
+
+        .nav-item.has-mega { position: static; }
+        .mega-menu {
+            position: absolute; left: 50%; top: 100%; transform: translateX(-50%); width: min(1000px, 88vw);
+            background: #fff; padding: 32px 48px; border-radius: 12px 12px 0 0; box-shadow: 0 12px 30px rgba(0,0,0,0.10);
+            display: none; z-index: 2000;
+        }
+        .nav-item.has-mega:hover .mega-menu { display: block; }
+        .mega-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 60px; }
+        .mega-col { position: relative; padding-left: 22px; }
+        .mega-col:not(:first-child)::before { content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 1px; background: #e7e7e7; }
+        .mega-title { font-size: 17px; font-weight: 600; margin-bottom: 12px; color: #3d3d3d; }
+        .mega-col a { display: block; padding: 10px 0; font-size: 14px; color: var(--text-dark); text-decoration: none; }
+        .mega-col a:hover { text-decoration: underline; background: transparent; color: var(--primary-color);}
+
+        .my-account-btn {
+            display: flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px;
+            font-size: 14px; font-weight: 500; color: #333; border: 1px solid #d6d6d6; text-decoration: none; transition: var(--transition);
+        }
+        .my-account-btn:hover { background-color: #f2f2f2; border-color: #bbb; }
+
+        /* ==========================================================================
+           CREATIVE SPACE SUB-NAVIGATION
+           ========================================================================== */
+        .cs-subnav-wrapper {
+            margin-top: 72px;
+            background: white;
+            border-bottom: 1px solid var(--bg-gray);
+            position: sticky;
+            top: 72px;
+            z-index: 990;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .cs-subnav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 55px;
+        }
+
+        .cs-subnav-links-container { display: flex; height: 100%; }
+        .cs-subnav-item { position: relative; display: flex; align-items: center; height: 100%; }
+        .cs-subnav-item > a {
+            text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.95rem;
+            padding: 0 1rem; height: 100%; display: flex; align-items: center; transition: var(--transition);
+        }
+        .cs-subnav-item:hover > a { color: white; background: var(--primary-color); }
+        
+        .cs-subnav-dropdown {
+            position: absolute; top: 100%; left: 0; background: var(--primary-color); min-width: 260px;
+            box-shadow: var(--shadow); opacity: 0; visibility: hidden; transform: translateY(10px);
+            transition: var(--transition); z-index: 1000; border-radius: 0 0 8px 8px; overflow: hidden;
+        }
+        .cs-subnav-item:hover .cs-subnav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+        .cs-subnav-dropdown a {
+            display: block; padding: 12px 20px; color: white; text-decoration: none; font-size: 0.85rem;
+            transition: background 0.2s; border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .cs-subnav-dropdown a:last-child { border-bottom: none; }
+        .cs-subnav-dropdown a:hover { background: var(--primary-dark); }
+
+        /* ==========================================================================
+           CREATIVE SPACE SPECIFIC STYLES
+           ========================================================================== */
+        .cs-container { max-width: 1400px; margin: 0 auto; position: relative; }
+        .cs-section { padding: 5rem 2rem; }
+        .cs-bg-light { background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-gray) 100%); }
+        .cs-section-title { font-size: 2.2rem; color: var(--primary-dark); margin-bottom: 1rem; font-family: 'Playfair Display', serif; }
+
+        .cs-btn {
+            display: inline-block; padding: 0.8rem 2rem; background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: var(--transition); border: none; cursor: pointer;
+        }
+        .cs-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 103, 81, 0.4); }
+        .cs-btn-outline { background: transparent; border: 2px solid white; box-shadow: none; }
+        .cs-btn-outline:hover { background: white; color: var(--primary-color); }
+        .cs-btn-sm { padding: 0.5rem 1.2rem; font-size: 0.9rem; }
+
+        .cs-grid-about { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: flex-start; }
+        
+        .cs-card {
+            background: white; border-radius: 20px; padding: 2rem; box-shadow: var(--shadow);
+            transition: var(--transition); border-top: 4px solid var(--primary-color); height: 100%;
+        }
+        .cs-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
+
+        .cs-accordion details { background: white; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 1rem; transition: var(--transition); }
+        .cs-accordion details[open] { box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-color: var(--primary-light); }
+        .cs-accordion summary {
+            padding: 1.2rem; font-weight: 600; cursor: pointer; list-style: none; display: flex;
+            justify-content: space-between; align-items: center; color: var(--primary-dark);
+        }
+        .cs-accordion summary::-webkit-details-marker { display: none; }
+        .cs-accordion summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; transition: transform 0.3s; color: var(--primary-color); }
+        .cs-accordion details[open] summary::after { transform: rotate(180deg); }
+        .cs-accordion .details-content {
+            padding: 0 1.2rem 1.2rem; font-size: 0.95rem; color: var(--text-light);
+            border-top: 1px solid #f1f5f9; margin-top: 0.5rem; padding-top: 1rem;
+        }
+
+        /* Footer */
+        footer { background: #0f172a; color: #ffffff; padding: 4rem 2rem 2rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
+        .footer-section h4 { color: var(--white); margin-bottom: 1.5rem; font-size: 1.2rem; }
+        .footer-links { display: flex; flex-direction: column; gap: 0.8rem; }
+        .footer-links a { color: #94a3b8; text-decoration: none; transition: var(--transition); display: flex; align-items: center; gap: 0.5rem; }
+        .footer-links a:hover { color: var(--white); transform: translateX(5px); }
+        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); color: #94a3b8; font-size: 0.9rem; }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 1100px) { .cs-subnav { display: none; } }
+        @media (max-width: 900px) {
+            .cs-grid-about { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+         MAIN HEADER
+         ========================================== -->
+    <header id="main-header">
+        <nav>
+              <a href="../index.html" class="logo">
+                <img src="images/LAU Libraries Logo.png" alt="LAU Logo">
+                <span class="logo-text">Libraries</span>
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li class="nav-item"><a href="#find">🔍 Finding Materials</a></li>
+                <li class="nav-item has-mega"><a href="#using">🎓 Using the Library</a></li>
+                <li class="nav-item has-mega"><a href="#support">💬 Getting Support</a></li>
+                <li class="nav-item"><a href="#visit">🏛️ Visit Us</a></li>
+                <li class="nav-item"><a href="#about">📣 About</a></li>
+            </ul>
+
+            <a href="#my-account" class="my-account-btn">
+                <i class="fa-regular fa-user"></i> My Account
+            </a>
+        </nav>
+    </header>
+
+    <!-- ==========================================
+         CREATIVE SPACE SECONDARY NAVIGATION
+         ========================================== -->
+    <div class="cs-subnav-wrapper">
+        <div class="cs-subnav">
+            <div class="cs-subnav-links-container">
+                <div class="cs-subnav-item"><a href="about.html">About</a></div>
+                <div class="cs-subnav-item">
+                    <a href="services.html" style="background: var(--bg-gray);">Services <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                    <div class="cs-subnav-dropdown">
+                        <!-- Active styling applied to 3D Printing link -->
+                        <a href="3d-printing.html" style="background: var(--primary-dark); border-left: 3px solid white;">3D Printing</a>
+                        <a href="3d-scanning.html">3D Scanning</a>
+                        <a href="textiles.html">Textiles & Embroidery</a>
+                    </div>
+                </div>
+                <div class="cs-subnav-item">
+                    <a href="equipment.html">Equipment <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                    <div class="cs-subnav-dropdown">
+                        <a href="bookable-equipment.html">View All Bookable Equipment</a>
+                    </div>
+                </div>
+                <div class="cs-subnav-item"><a href="software.html">Software</a></div>
+                <div class="cs-subnav-item">
+                    <a href="workshops.html">Workshops <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                    <div class="cs-subnav-dropdown">
+                        <a href="intro-3d-printing.html">Intro to 3D Printing</a>
+                        <a href="intro-3d-scanning.html">Intro to 3D Scanning</a>
+                        <a href="intro-prompt-engineering.html">Intro to Prompt Engineering</a>
+                        <a href="laura-creative-lab.html">Laura Creative Lab</a>
+                    </div>
+                </div>
+                <div class="cs-subnav-item"><a href="projects.html">Projects</a></div>
+                <div class="cs-subnav-item"><a href="policies.html">Policies</a></div>
+                <div class="cs-subnav-item"><a href="contact.html">Contact</a></div>
+            </div>
+            <a href="https://forms.office.com/r/tc4GVt8VXy?origin=lprLink" target="_blank" class="cs-btn cs-btn-sm">Book a Session</a>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         PAGE SPECIFIC CONTENT: 3D PRINTING
+         ========================================== -->
+         
+    <!-- Custom Hero Banner for 3D Printing -->
+    <section class="cs-hero" style="padding: 60px 2rem; background: linear-gradient(rgba(0, 77, 53, 0.9), rgba(0, 77, 53, 0.7)), url('images/Student & Faculty Projects 3.jpg') center/cover;">
+        <div class="cs-container">
+            <h1 style="font-size: 3rem; margin-bottom: 0.5rem; font-family: 'Playfair Display', serif; color: white;">3D Printing</h1>
+            <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9);">Turn your digital designs into physical reality.</p>
+        </div>
+    </section>
+
+    <section class="cs-section cs-bg-light">
+        <div class="cs-container cs-grid-about">
+            
+            <!-- Left Column: Details & Guidelines -->
+            <div>
+                <h2 class="cs-section-title">Bring Ideas to Life</h2>
+                <p style="color: var(--text-light); margin-bottom: 1.5rem; font-size: 1.1rem;">
+                    Our 3D printing station provides LAU students and faculty with the tools to create rapid prototypes, architectural models, custom parts, and artistic pieces. We support multi-material slicing and offer guidance on optimizing your designs for successful prints.
+                </p>
+                
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--primary-dark); font-size: 1.3rem;">Supported Materials</h3>
+                <ul style="list-style: none; color: var(--text-light); margin-bottom: 2rem; font-size: 1.05rem;">
+                    <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 10px;">
+                        <i class="fas fa-check" style="color: var(--primary-color); margin-top: 5px;"></i> 
+                        <div><strong>PLA (Polylactic Acid):</strong> Ideal for concept models, rapid prototyping, and detailed artistic prints. Highly reliable and environmentally friendly.</div>
+                    </li>
+                    <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 10px;">
+                        <i class="fas fa-check" style="color: var(--primary-color); margin-top: 5px;"></i> 
+                        <div><strong>PETG (Polyethylene Terephthalate Glycol):</strong> Stronger and more durable. Excellent for functional parts that require minor flexibility and high impact resistance.</div>
+                    </li>
+                    <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 10px;">
+                        <i class="fas fa-check" style="color: var(--primary-color); margin-top: 5px;"></i> 
+                        <div><strong>TPU (Thermoplastic Polyurethane):</strong> A flexible, rubber-like material perfect for wearables, soft grips, and impact-absorbing components.</div>
+                    </li>
+                </ul>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--primary-dark); font-size: 1.3rem;">Getting Started</h3>
+                <div class="cs-accordion">
+                    <details open>
+                        <summary>1. Complete the Required Training</summary>
+                        <div class="details-content">
+                            Before using the printers, you must either attend one of our "Intro to 3D Printing" workshops or complete a brief 1-on-1 orientation session with the Creative Space Supervisor.
+                        </div>
+                    </details>
+                    <details>
+                        <summary>2. Prepare Your Design File</summary>
+                        <div class="details-content">
+                            Export your 3D design as an <strong>.STL</strong> or <strong>.OBJ</strong> file. We recommend using our lab's dedicated high-performance workstations to slice your file using <em>UltiMaker Cura</em> or <em>3DWOX Sindoh</em>.
+                        </div>
+                    </details>
+                    <details>
+                        <summary>3. Supervisor Clearance</summary>
+                        <div class="details-content">
+                            All prints must be reviewed and cleared by the Creative Space supervisor before the job begins. This helps ensure your print is optimized, safe, and will not fail mid-process. All materials must be purchased through the creative space or pre-approved.
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Right Column: Equipment & CTA -->
+            <div>
+                <!-- Available Printers Card -->
+                <div class="cs-card" style="margin-bottom: 2rem; border-top-color: var(--primary-light);">
+                    <h3 style="margin-bottom: 1.5rem;"><i class="fas fa-print"></i> Available Printers</h3>
+                    
+                    <div style="display: flex; gap: 15px; margin-bottom: 1.5rem; align-items: center; border-bottom: 1px solid var(--bg-gray); padding-bottom: 1.5rem;">
+                        <div style="width: 80px; height: 80px; background: white; border-radius: 8px; border: 1px solid #eaeaea; display: flex; align-items: center; justify-content: center; padding: 10px;">
+                            <img src="images/Ultimaker S5.png" alt="Ultimaker S5" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.05rem; color: var(--text-dark);">Ultimaker S5</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.4;">Dual extrusion, large build volume, ideal for complex geometries.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 15px; align-items: center;">
+                        <div style="width: 80px; height: 80px; background: white; border-radius: 8px; border: 1px solid #eaeaea; display: flex; align-items: center; justify-content: center; padding: 10px;">
+                            <img src="images/Rize 2XC.jpg" alt="Rize 2XC" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.05rem; color: var(--text-dark);">Rize 2XC</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.4;">Safe, composite part printing with highly reliable results.</p>
+                        </div>
+                    </div>
+                    
+                    <a href="https://lau.libcal.com/equipment?lid=23058&gid=52089" target="_blank" class="cs-btn cs-btn-sm" style="display: block; text-align: center; margin-top: 1.5rem; width: 100%;">
+                        Book a Printer via LibCal
+                    </a>
+                </div>
+
+                <!-- Workshop CTA Card -->
+                <div class="cs-card" style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%); color: white; border: none;">
+                    <h3 style="color: white; margin-bottom: 0.5rem;"><i class="fas fa-graduation-cap"></i> New to 3D Printing?</h3>
+                    <p style="font-size: 0.95rem; margin-bottom: 1.5rem; opacity: 0.9;">Join our beginner-friendly workshop to learn the ropes of slicing, safety, and operation.</p>
+                    <a href="intro-3d-printing.html" class="cs-btn cs-btn-outline cs-btn-sm" style="display: block; text-align: center; width: 100%;">
+                        View Next Workshop
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="#"><i class="fas fa-home"></i> Home</a>
+                        <a href="#"><i class="fas fa-search"></i> One-Search</a>
+                        <a href="#"><i class="fas fa-calendar"></i> Events</a>
+                        <a href="#"><i class="fas fa-question-circle"></i> FAQs</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <div class="footer-links">
+                        <a href="#"><i class="fas fa-book"></i> Borrow & Renew</a>
+                        <a href="#"><i class="fas fa-print"></i> Print & Scan</a>
+                        <a href="#"><i class="fas fa-desktop"></i> Computers</a>
+                        <a href="#"><i class="fas fa-door-open"></i> Study Rooms</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <div class="footer-links">
+                        <a href="#"><i class="fas fa-database"></i> Databases</a>
+                        <a href="#"><i class="fas fa-bookmark"></i> Course Reserves</a>
+                        <a href="#"><i class="fas fa-graduation-cap"></i> Research Guides</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <div class="footer-links">
+                        <a href="#"><i class="fas fa-map-marker-alt"></i> Locations</a>
+                        <a href="#"><i class="fas fa-clock"></i> Hours</a>
+                        <a href="#"><i class="fas fa-phone"></i> (961) 1-786456</a>
+                        <a href="mailto:libraries@lau.edu.lb"><i class="fas fa-envelope"></i> libraries@lau.edu.lb</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>

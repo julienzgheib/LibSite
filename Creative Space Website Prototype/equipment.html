@@ -1,0 +1,1483 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Equipment - LAU Creative Space Lab</title>
+
+    <!-- Fonts and Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary-color: #006751;
+        --primary-light: #00b386;
+        --primary-dark: #004d35;
+        --text-dark: #333;
+        --text-light: #666;
+        --bg-light: #f8f9fa;
+        --bg-gray: #e9ecef;
+        --white: #ffffff;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+        --header-height: 72px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+        scroll-behavior: smooth;
+      }
+
+      section[id] {
+        scroll-margin-top: var(--header-height);
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+        background: var(--bg-light);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      /* Header */
+      header {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        max-width: 1800px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+
+      .logo img {
+        height: 40px;
+        width: auto;
+      }
+
+      .logo-text {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--primary-color);
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 0;
+        position: relative;
+        margin-right: 2rem;
+      }
+
+      .nav-links > li > a {
+        text-decoration: none;
+        color: var(--text-dark);
+        font-weight: 400;
+        transition: var(--transition);
+        position: relative;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-size: 0.9rem;
+      }
+
+      .nav-links > li > a:hover {
+        color: var(--primary-color);
+        background: rgba(0, 103, 81, 0.1);
+      }
+
+      .nav-links > .nav-item:last-child > .dropdown {
+        left: auto;
+        right: 0;
+      }
+
+      .nav-item {
+        position: relative;
+      }
+
+      .nav-item > a .fa-chevron-down {
+        font-size: 0.65rem;
+        transition: transform 0.2s ease;
+      }
+
+      .nav-item:hover > a .fa-chevron-down {
+        transform: rotate(180deg);
+      }
+
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: var(--white);
+        min-width: 240px;
+        box-shadow: var(--shadow);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: var(--transition);
+        z-index: 1000;
+        border-radius: 0 0 10px 10px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        border-top: 3px solid var(--primary-color);
+      }
+
+      .nav-item:hover > .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding: 12px 20px;
+        color: var(--text-dark);
+        text-decoration: none;
+        font-size: 0.88rem;
+        font-weight: 400;
+        border-bottom: 1px solid var(--bg-gray);
+        transition:
+          background 0.2s,
+          color 0.2s;
+        white-space: nowrap;
+      }
+
+      .dropdown a:last-child {
+        border-bottom: none;
+      }
+
+      .dropdown a:hover {
+        background: rgba(0, 103, 81, 0.08);
+        color: var(--primary-color);
+      }
+
+      /* Mobile menu */
+      .nav-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 42px;
+        height: 42px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        z-index: 1201;
+        border-radius: 8px;
+      }
+
+      .nav-toggle:hover {
+        background: rgba(0, 103, 81, 0.08);
+      }
+
+      .nav-toggle span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--primary-color);
+        transition: var(--transition);
+      }
+
+      .nav-toggle.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      .nav-toggle.open span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .nav-toggle.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .nav-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        z-index: 999;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .nav-overlay.show {
+        display: block;
+        opacity: 1;
+      }
+
+      /* Smaller hero */
+      .cs-hero {
+        margin-top: var(--header-height);
+        min-height: 56vh;
+        padding: 2rem 1.5rem;
+        text-align: center;
+        color: white;
+        background:
+          linear-gradient(rgba(0, 77, 53, 0.75), rgba(0, 0, 0, 0.65)),
+          url("images/undefined - Imgur.jpg") center/cover no-repeat;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cs-hero .cs-container {
+        max-width: 900px;
+      }
+
+      .cs-hero h1 {
+        font-size: clamp(1.9rem, 5vw, 3rem);
+        margin-bottom: 0.8rem;
+        font-family: "Playfair Display", serif;
+        animation: slideInUp 0.8s ease-out;
+        line-height: 1.15;
+      }
+
+      .cs-hero p {
+        font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+        max-width: 720px;
+        margin: 0 auto 1.5rem;
+        opacity: 0.9;
+        animation: slideInUp 0.8s ease-out 0.2s both;
+        padding: 0 0.5rem;
+      }
+
+      .cs-hero-tags {
+        font-size: clamp(1rem, 2.5vw, 1.3rem);
+        font-weight: 600;
+        margin-bottom: 1.2rem;
+        color: #59c775;
+        animation: slideInUp 0.8s ease-out 0.1s both;
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Page layout */
+      .page-main {
+        margin-top: 0;
+      }
+
+      .back-home {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin: 1.5rem 1.5rem 0;
+        color: var(--primary-color);
+        font-weight: 600;
+        font-size: 0.92rem;
+        text-decoration: none;
+      }
+
+      .back-home:hover {
+        color: var(--primary-dark);
+        text-decoration: underline;
+      }
+
+      .cs-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .cs-section {
+        padding: clamp(2.5rem, 4vw, 3.2rem) 1.5rem;
+      }
+
+      .cs-bg-light {
+        background: linear-gradient(
+          135deg,
+          var(--bg-light) 0%,
+          var(--bg-gray) 100%
+        );
+      }
+
+      .cs-section-title {
+        font-size: clamp(1.5rem, 3.5vw, 2rem);
+        color: var(--primary-dark);
+        margin-bottom: 1rem;
+        font-family: "Playfair Display", serif;
+      }
+
+      /* LIBCAL EQUIPMENT SLIDER - SAME AS INDEX */
+      .libcal-slider {
+        width: 100%;
+        overflow: hidden;
+        margin-top: 2rem;
+        position: relative;
+      }
+
+      .libcal-slider::before,
+      .libcal-slider::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 90px;
+        height: 100%;
+        z-index: 3;
+        pointer-events: none;
+      }
+
+      .libcal-slider::before {
+        left: 0;
+        background: linear-gradient(to right, #f8f9fa, transparent);
+      }
+
+      .libcal-slider::after {
+        right: 0;
+        background: linear-gradient(to left, #f8f9fa, transparent);
+      }
+
+      .libcal-track {
+        display: flex;
+        width: max-content;
+        animation: equipmentScroll 35s linear infinite;
+        will-change: transform;
+      }
+
+      .libcal-track-reverse {
+        animation-direction: reverse;
+      }
+
+      .libcal-slider:hover .libcal-track {
+        animation-play-state: paused;
+      }
+
+      .libcal-group {
+        display: flex;
+        gap: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .libcal-group .libcal-card {
+        flex: 0 0 260px;
+      }
+
+      @keyframes equipmentScroll {
+        from {
+          transform: translateX(0);
+        }
+
+        to {
+          transform: translateX(-33.3333%);
+        }
+      }
+
+      @media (max-width: 700px) {
+        .libcal-group .libcal-card {
+          flex-basis: 230px;
+        }
+
+        .libcal-track {
+          animation-duration: 25s;
+        }
+      }
+
+      .libcal-card {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border: 1px solid #eaeaea;
+        transition: var(--transition);
+      }
+
+      .libcal-card:hover {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        transform: translateY(-3px);
+      }
+
+      .libcal-img-container {
+        height: 220px;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+        border-bottom: 1px solid #f5f5f5;
+      }
+
+      .libcal-img-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+      }
+
+      .libcal-img-link:hover .libcal-img-container img {
+        transform: scale(1.03);
+      }
+
+      .libcal-img-container img {
+        transition: transform 0.3s ease;
+      }
+
+      .libcal-img-container img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+
+      .libcal-img-bg-gray {
+        background: #fdfdfd;
+        padding: 1rem;
+      }
+
+      .libcal-img-bg-gray img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+
+      .libcal-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        padding: 1.2rem 1.2rem 1.5rem 1.2rem;
+        flex-grow: 1;
+        color: var(--text-dark);
+        letter-spacing: -0.01em;
+      }
+
+      .libcal-footer {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.6rem 1rem 1rem;
+        background: #fff;
+      }
+
+      .libcal-action {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: var(--primary-color);
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: var(--transition);
+        text-align: left;
+        line-height: 1.15;
+        padding: 0.4rem 0.25rem;
+        border-radius: 8px;
+      }
+
+      .libcal-action:hover {
+        background: rgba(0, 103, 81, 0.08);
+        color: var(--primary-dark);
+        text-decoration: none;
+      }
+
+      .libcal-action i {
+        font-size: 1.1rem;
+        color: var(--primary-color);
+        transition: var(--transition);
+      }
+
+      .libcal-divider {
+        width: 1px;
+        background: #e2e2e2;
+      }
+
+      /* Minimal Footer */
+      footer {
+        background: linear-gradient(
+          160deg,
+          var(--primary-dark) 0%,
+          #00291c 100%
+        );
+        color: white;
+        padding: 2rem 1.5rem 1.25rem;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-minimal {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-brand h4 {
+        font-size: 1.05rem;
+        margin-bottom: 0.4rem;
+        color: white;
+      }
+
+      .footer-brand p {
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 0.88rem;
+        max-width: 420px;
+        line-height: 1.5;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem 1.2rem;
+        justify-content: flex-end;
+      }
+
+      .footer-links a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        font-size: 0.88rem;
+        transition: var(--transition);
+      }
+
+      .footer-links a:hover {
+        color: var(--primary-light);
+      }
+
+      .footer-contact {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem 1.2rem;
+        margin-top: 1.4rem;
+        padding-top: 1.2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.62);
+        font-size: 0.84rem;
+      }
+
+      .footer-contact span,
+      .footer-contact a {
+        color: rgba(255, 255, 255, 0.62);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+      }
+
+      .footer-contact a:hover {
+        color: var(--primary-light);
+      }
+
+      .copyright {
+        margin-top: 1.1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+        color: rgba(255, 255, 255, 0.45);
+        font-size: 0.8rem;
+      }
+
+      @media (max-width: 700px) {
+        footer {
+          padding: 2rem 1.25rem 1.25rem;
+        }
+
+        .footer-minimal {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 1.5rem;
+        }
+
+        .footer-brand {
+          width: 100%;
+        }
+
+        .footer-brand h4 {
+          font-size: 1.05rem;
+        }
+
+        .footer-brand p {
+          max-width: 300px;
+          margin: 0 auto;
+          font-size: 0.88rem;
+          line-height: 1.55;
+        }
+
+        .footer-links {
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 0.8rem 1rem;
+          justify-items: center;
+          justify-content: center;
+        }
+
+        .footer-links a {
+          font-size: 0.88rem;
+          line-height: 1.3;
+        }
+
+        .footer-contact {
+          width: 100%;
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 0.75rem;
+          justify-items: center;
+          text-align: center;
+          margin-top: 1.5rem;
+          padding-top: 1.25rem;
+        }
+
+        .footer-contact span,
+        .footer-contact a {
+          justify-content: center;
+          align-items: center;
+          font-size: 0.82rem;
+          line-height: 1.4;
+        }
+
+        .copyright {
+          max-width: 300px;
+          margin: 1.2rem auto 0;
+          padding-top: 1rem;
+          text-align: center;
+          font-size: 0.78rem;
+          line-height: 1.5;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .footer-links {
+          grid-template-columns: repeat(2, minmax(120px, 1fr));
+          gap: 0.75rem 0.5rem;
+        }
+
+        .footer-contact {
+          justify-items: start;
+          text-align: left;
+        }
+
+        .footer-contact span,
+        .footer-contact a {
+          justify-content: flex-start;
+          text-align: left;
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 900px) {
+        nav {
+          padding: 0.85rem 1.25rem;
+        }
+
+        .nav-toggle {
+          display: flex;
+        }
+
+        .nav-links {
+          position: fixed;
+          top: 0;
+          right: 0;
+          width: min(320px, 85vw);
+          height: 100dvh;
+          background: white;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          padding: calc(var(--header-height) + 1rem) 1rem 2rem;
+          box-shadow: -8px 0 30px rgba(0, 0, 0, 0.15);
+          transform: translateX(110%);
+          transition: transform 0.3s ease;
+          overflow-y: auto;
+          overflow-x: hidden;
+          z-index: 1200;
+          margin-right: 0;
+        }
+
+        .nav-links.open {
+          transform: translateX(0);
+        }
+
+        body.menu-open {
+          overflow: hidden;
+        }
+
+        .nav-toggle {
+          position: relative;
+          z-index: 1301;
+        }
+
+        .nav-overlay {
+          display: block;
+          position: fixed;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.35);
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.3s ease;
+          z-index: 999;
+        }
+
+        .nav-overlay.show {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .nav-links > li > a {
+          width: 100%;
+          padding: 0.9rem 0.5rem;
+          font-size: 1rem;
+          border-bottom: 1px solid var(--bg-gray);
+          border-radius: 0;
+          justify-content: space-between;
+        }
+
+        .nav-item {
+          width: 100%;
+        }
+
+        .dropdown {
+          position: static;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+          box-shadow: none;
+          border-top: none;
+          border-radius: 0;
+          max-height: 0;
+          padding: 0;
+          margin: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease;
+        }
+
+        .nav-item.open > .dropdown {
+          max-height: 600px;
+          padding: 0.5rem 0;
+        }
+
+        .nav-item.open > a {
+          color: var(--primary-color);
+          background: rgba(0, 103, 81, 0.08);
+        }
+
+        .nav-item.open > a .fa-chevron-down {
+          transform: rotate(180deg);
+        }
+
+        .dropdown a {
+          padding: 0.75rem 0.5rem 0.75rem 1.25rem;
+          font-size: 0.92rem;
+        }
+      }
+
+      @media (max-width: 700px) {
+        footer {
+          padding: 1.75rem 1.25rem 1.1rem;
+        }
+
+        .footer-minimal {
+          flex-direction: column;
+          gap: 1.2rem;
+        }
+
+        .footer-links {
+          justify-content: flex-start;
+          gap: 0.75rem 1rem;
+        }
+
+        .footer-contact {
+          flex-direction: column;
+          gap: 0.55rem;
+        }
+
+        .copyright {
+          text-align: left;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .logo-text {
+          display: none;
+        }
+
+        .cs-hero {
+          min-height: 48vh;
+        }
+
+        .libcal-card {
+          border-radius: 14px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ==========================================
+         MAIN HEADER
+         ========================================== -->
+    <header id="main-header">
+      <nav>
+        <a href="../index.html" class="logo">
+          <img src="images/LAU Libraries Logo.png" alt="LAU Logo" />
+          <span class="logo-text">Libraries</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li class="nav-item">
+            <a href="index.html" class="nav-item">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="about.html">About <i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown">
+              <a href="about.html">About the Creative Space</a>
+              <a href="staff-administration.html">Staff and Administration</a>
+              <a href="workshops.html">News and Events</a>
+              <a href="contact.html">Contact Us</a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="services.html">
+              Services <i class="fas fa-chevron-down"></i>
+            </a>
+            <div class="dropdown">
+              <a href="services.html#3d-printing">3D Printing</a>
+              <a href="services.html#3d-scanning">3D Scanning</a>
+              <a href="services.html#textiles">Textiles & Embroidery</a>
+              <a href="services.html#ai-tools">AI Tools</a>
+              <a href="services.html#educational-tools">
+                AI Powered Educational Tools
+              </a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="policies.html">
+              Policies <i class="fas fa-chevron-down"></i>
+            </a>
+            <div class="dropdown">
+              <a href="policies.html#student-policies">Student Policies</a>
+              <a href="policies.html#staff-policies">Faculty Policies</a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="equipment.html">
+              Using the Space <i class="fas fa-chevron-down"></i>
+            </a>
+            <div class="dropdown">
+              <a href="equipment.html">Reserve Equipments</a>
+              <a href="software.html">Software</a>
+              <a href="reserve-seat.html">Reserve</a>
+            </div>
+          </li>
+        </ul>
+
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="navLinks"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </header>
+
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- ==========================================
+         CREATIVE SPACE HERO
+         ========================================== -->
+    <section class="cs-hero">
+      <div class="cs-container">
+        <div class="cs-hero-tags">Create • Prototype • Learn</div>
+        <h1>LAU Creative Space Lab</h1>
+        <p>
+          The Creative Space at the Lebanese American University (Beirut Campus)
+          is an open lab where students from every major explore technology
+          through making.
+        </p>
+        <p style="margin-top: 20px; font-size: 0.85rem; opacity: 0.7">
+          10th Floor, RNL Building • Beirut Campus
+        </p>
+      </div>
+    </section>
+
+    <main class="page-main">
+      <div class="cs-container">
+        <a href="index.html" class="back-home">
+          <i class="fas fa-arrow-left"></i> Back to homepage
+        </a>
+      </div>
+
+      <!-- ==========================================
+           BOOKABLE EQUIPMENT
+           ========================================== -->
+      <section id="equipment" class="cs-section cs-bg-light">
+        <div class="cs-container">
+          <h2 class="cs-section-title" style="margin-bottom: 0.5rem">
+            Bookable Equipment
+          </h2>
+          <p style="color: var(--text-light); font-size: 1.1rem">
+            Browse our inventory of technical and creative machinery. Click
+            availability to reserve items via our LibCal system.
+          </p>
+
+          <h3
+            style="
+              font-family: &quot;Inter&quot;, sans-serif;
+              font-size: 1.3rem;
+              margin-top: 3rem;
+              color: #333;
+              border-bottom: 2px solid var(--primary-light);
+              padding-bottom: 0.5rem;
+              display: inline-block;
+            "
+          >
+            Creative Space Machinery
+          </h3>
+
+          <div class="libcal-slider">
+            <div class="libcal-track">
+              <div class="libcal-card">
+                <a
+                  href="https://lau.libcal.com/equipment/item/217667"
+                  class="libcal-img-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="libcal-img-container libcal-img-bg-gray">
+                    <img src="images/3D Scanner.jpg" alt="3D Scanner" />
+                  </div>
+                </a>
+                <div class="libcal-title">3D Scanner</div>
+                <div class="libcal-footer">
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217667"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Availability</span>
+                  </a>
+                  <div class="libcal-divider"></div>
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217667"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>More<br />details</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="libcal-card">
+                <a
+                  href="https://lau.libcal.com/equipment/item/227614"
+                  class="libcal-img-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="libcal-img-container">
+                    <img
+                      src="images/Rize 2XC.jpg"
+                      style="padding: 10px"
+                      alt="Rize 2XC"
+                    />
+                  </div>
+                </a>
+                <div class="libcal-title">Rize 2XC</div>
+                <div class="libcal-footer">
+                  <a
+                    href="https://lau.libcal.com/equipment/item/227614"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Availability</span>
+                  </a>
+                  <div class="libcal-divider"></div>
+                  <a
+                    href="https://lau.libcal.com/equipment/item/227614"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>More<br />details</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="libcal-card">
+                <a
+                  href="https://lau.libcal.com/equipment/item/227613"
+                  class="libcal-img-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="libcal-img-container">
+                    <img
+                      src="images/Ultimaker S5.png"
+                      style="padding: 10px"
+                      alt="Ultimaker S5"
+                    />
+                  </div>
+                </a>
+                <div class="libcal-title">Ultimaker S5</div>
+                <div class="libcal-footer">
+                  <a
+                    href="https://lau.libcal.com/equipment/item/227613"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Availability</span>
+                  </a>
+                  <div class="libcal-divider"></div>
+                  <a
+                    href="https://lau.libcal.com/equipment/item/227613"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>More<br />details</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="libcal-card">
+                <a
+                  href="https://lau.libcal.com/equipment/item/217676"
+                  class="libcal-img-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="libcal-img-container">
+                    <img
+                      src="images/Seweing Machine.jpg"
+                      style="padding: 10px"
+                      alt="Sewing Machine"
+                    />
+                  </div>
+                </a>
+                <div class="libcal-title">Sewing Machine</div>
+                <div class="libcal-footer">
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217676"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Availability</span>
+                  </a>
+                  <div class="libcal-divider"></div>
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217676"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>More<br />details</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="libcal-card">
+                <a
+                  href="https://lau.libcal.com/equipment/item/217675"
+                  class="libcal-img-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="libcal-img-container">
+                    <img
+                      src="images/Embroidery Machine.jpg"
+                      style="padding: 10px"
+                      alt="Embroidery Machine"
+                    />
+                  </div>
+                </a>
+                <div class="libcal-title">Embroidery Machine</div>
+                <div class="libcal-footer">
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217675"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Availability</span>
+                  </a>
+                  <div class="libcal-divider"></div>
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217675"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>More<br />details</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3
+            style="
+              font-family: &quot;Inter&quot;, sans-serif;
+              font-size: 1.3rem;
+              margin-top: 4rem;
+              color: #333;
+              border-bottom: 2px solid var(--primary-light);
+              padding-bottom: 0.5rem;
+              display: inline-block;
+            "
+          >
+            Media & Tech Equipment
+          </h3>
+
+          <div class="libcal-slider">
+            <div class="libcal-track libcal-track-reverse">
+              <div class="libcal-card">
+                <a
+                  href="https://lau.libcal.com/equipment/item/217664"
+                  class="libcal-img-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="libcal-img-container">
+                    <img src="images/65inch TV.jpg" alt="65 inch TV" />
+                  </div>
+                </a>
+                <div class="libcal-title">65&quot; TV</div>
+                <div class="libcal-footer">
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217664"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Availability</span>
+                  </a>
+                  <div class="libcal-divider"></div>
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217664"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>More<br />details</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="libcal-card">
+                <a
+                  href="https://lau.libcal.com/equipment/item/227126"
+                  class="libcal-img-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="libcal-img-container">
+                    <img
+                      src="images/CSL_Lap1001.png"
+                      style="padding: 10px"
+                      alt="Dell Laptop"
+                    />
+                  </div>
+                </a>
+                <div class="libcal-title">CSL_Lap1001</div>
+                <div class="libcal-footer">
+                  <a
+                    href="https://lau.libcal.com/equipment/item/227126"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Availability</span>
+                  </a>
+                  <div class="libcal-divider"></div>
+                  <a
+                    href="https://lau.libcal.com/equipment/item/227126"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>More<br />details</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="libcal-card">
+                <a
+                  href="https://lau.libcal.com/equipment/item/227429"
+                  class="libcal-img-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="libcal-img-container">
+                    <img src="images/Mobile TV.jpg" alt="Mobile TV" />
+                  </div>
+                </a>
+                <div class="libcal-title">Mobile TV</div>
+                <div class="libcal-footer">
+                  <a
+                    href="https://lau.libcal.com/equipment/item/227429"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Availability</span>
+                  </a>
+                  <div class="libcal-divider"></div>
+                  <a
+                    href="https://lau.libcal.com/equipment/item/227429"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>More<br />details</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="libcal-card">
+                <a
+                  href="https://lau.libcal.com/equipment/item/217663"
+                  class="libcal-img-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="libcal-img-container">
+                    <img src="images/Projector.jpg" alt="Projector" />
+                  </div>
+                </a>
+                <div class="libcal-title">Projector</div>
+                <div class="libcal-footer">
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217663"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Availability</span>
+                  </a>
+                  <div class="libcal-divider"></div>
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217663"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>More<br />details</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-minimal">
+          <div class="footer-brand">
+            <h4>LAU Creative Space Lab</h4>
+            <p>
+              Create, prototype, and learn through digital fabrication, AI
+              tools, workshops, and guided creative support.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="equipment.html">Equipment</a>
+            <a href="software.html">Software</a>
+            <a href="reserve-seat.html">Reserve</a>
+            <a href="workshops.html">Workshops</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div class="footer-contact">
+          <span>
+            <i class="fas fa-map-marker-alt"></i>
+            RNL Building, 10th Floor, LAU Beirut
+          </span>
+
+          <a href="tel:+9611786456ext1210">
+            <i class="fas fa-phone"></i>
+            Ext. 1210
+          </a>
+
+          <a href="mailto:creativespace@lau.edu.lb">
+            <i class="fas fa-envelope"></i>
+            creativespace@lau.edu.lb
+          </a>
+        </div>
+
+        <div class="copyright">
+          &copy; 2026 Lebanese American University Libraries. All rights
+          reserved.
+        </div>
+      </div>
+    </footer>
+
+    <!-- SAME EQUIPMENT SLIDER LOGIC AS INDEX -->
+    <script>
+      document.querySelectorAll(".libcal-track").forEach((track) => {
+        const originalCards = Array.from(track.children).filter((child) =>
+          child.classList.contains("libcal-card"),
+        );
+
+        if (!originalCards.length) return;
+
+        const group = document.createElement("div");
+        group.className = "libcal-group";
+
+        originalCards.forEach((card) => {
+          group.appendChild(card);
+        });
+
+        track.appendChild(group);
+
+        for (let i = 0; i < 2; i++) {
+          const clone = group.cloneNode(true);
+          clone.setAttribute("aria-hidden", "true");
+          track.appendChild(clone);
+        }
+      });
+    </script>
+
+    <!-- MOBILE NAVIGATION -->
+    <script>
+      const navToggle = document.getElementById("navToggle");
+      const navLinks = document.getElementById("navLinks");
+      const navOverlay = document.getElementById("navOverlay");
+
+      function closeMenu() {
+        navToggle.classList.remove("open");
+        navLinks.classList.remove("open");
+        navOverlay.classList.remove("show");
+        document.body.classList.remove("menu-open");
+        navToggle.setAttribute("aria-expanded", "false");
+
+        document
+          .querySelectorAll(".nav-item.open, .nav-subitem.open")
+          .forEach((item) => {
+            item.classList.remove("open");
+          });
+      }
+
+      function openMenu() {
+        navToggle.classList.add("open");
+        navLinks.classList.add("open");
+        navOverlay.classList.add("show");
+        document.body.classList.add("menu-open");
+        navToggle.setAttribute("aria-expanded", "true");
+      }
+
+      navToggle.addEventListener("click", () => {
+        if (navLinks.classList.contains("open")) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+
+      navOverlay.addEventListener("click", closeMenu);
+
+      document.querySelectorAll(".nav-item > a").forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const parentItem = link.closest(".nav-item");
+          const dropdown = parentItem.querySelector(":scope > .dropdown");
+
+          if (window.innerWidth <= 900 && dropdown) {
+            event.preventDefault();
+
+            document.querySelectorAll(".nav-item.open").forEach((item) => {
+              if (item !== parentItem) {
+                item.classList.remove("open");
+              }
+            });
+
+            parentItem.classList.toggle("open");
+          } else if (window.innerWidth <= 900) {
+            closeMenu();
+          }
+        });
+      });
+
+      document.querySelectorAll(".dropdown a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 900) {
+            closeMenu();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAU Creative Space Lab - LAU Libraries</title>
+    
+    <!-- Fonts and Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Paste all the CSS from your original file inside this style tag. 
+           (I have omitted it here to save space, but you just keep your original <style> block exactly as it was) */
+    </style>
+</head>
+<body>
+
+    <!-- MAIN HEADER -->
+    <header id="main-header">
+        <nav>
+         <a href="../index.html" class="logo"></a>
+                <img src="images/LAU Libraries Logo.png" alt="LAU Logo">
+                <span class="logo-text">Libraries</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <!-- Keep your original Library Nav Links Here -->
+                <li class="nav-item"><a href="#find">🔍 Finding Materials</a></li>
+                <li class="nav-item has-mega"><a href="#using">🎓 Using the Library</a></li>
+                <li class="nav-item has-mega"><a href="#support">💬 Getting Support</a></li>
+                <li class="nav-item"><a href="#visit">🏛️ Visit Us</a></li>
+                <li class="nav-item"><a href="#about">📣 About</a></li>
+            </ul>
+            <a href="#my-account" class="my-account-btn">
+                <i class="fa-regular fa-user"></i> My Account
+            </a>
+        </nav>
+    </header>
+
+    <!-- CREATIVE SPACE SUB-NAVIGATION -->
+    <div class="cs-subnav-wrapper">
+        <div class="cs-subnav">
+            <div class="cs-subnav-links-container">
+                <div class="cs-subnav-item"><a href="about.html">About</a></div>
+                <div class="cs-subnav-item">
+                    <a href="services.html">Services <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                    <div class="cs-subnav-dropdown">
+                        <a href="3d-printing.html">3D Printing</a>
+                        <a href="3d-scanning.html">3D Scanning</a>
+                        <a href="textiles.html">Textiles & Embroidery</a>
+                    </div>
+                </div>
+                <div class="cs-subnav-item">
+                    <a href="equipment.html">Equipment <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                    <div class="cs-subnav-dropdown">
+                        <a href="bookable-equipment.html">View All Bookable Equipment</a>
+                    </div>
+                </div>
+                <div class="cs-subnav-item"><a href="software.html">Software</a></div>
+                <div class="cs-subnav-item">
+                    <a href="workshops.html">Workshops <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                    <div class="cs-subnav-dropdown">
+                        <a href="intro-3d-printing.html">Intro to 3D Printing</a>
+                        <a href="intro-3d-scanning.html">Intro to 3D Scanning</a>
+                        <a href="intro-prompt-engineering.html">Intro to Prompt Engineering</a>
+                        <a href="laura-creative-lab.html">Laura Creative Lab</a>
+                    </div>
+                </div>
+                <div class="cs-subnav-item"><a href="projects.html">Projects</a></div>
+                <div class="cs-subnav-item"><a href="policies.html">Policies</a></div>
+                <div class="cs-subnav-item"><a href="contact.html">Contact</a></div>
+            </div>
+            <a href="https://forms.office.com/r/tc4GVt8VXy?origin=lprLink" target="_blank" class="cs-btn cs-btn-sm">Book a Session</a>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- PAGE CONTENT GOES HERE                     -->
+    <!-- ========================================== -->
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <!-- Keep your original Footer Links Here -->
+                <div class="footer-section"><h4>Quick Links</h4></div>
+                <div class="footer-section"><h4>Services</h4></div>
+                <div class="footer-section"><h4>Resources</h4></div>
+                <div class="footer-section"><h4>Contact</h4></div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Lebanese American University Libraries. All rights reserved.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.85rem;">Committed to academic excellence and research innovation</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+                header.style.padding = '0.5rem 0';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = 'var(--shadow)';
+                header.style.padding = '0';
+            }
+        });
+    </script>
+</body>
+</html>

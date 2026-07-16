@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - LAU Creative Space Lab</title>
+    
+    <!-- Fonts and Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           BASE STYLES
+           ========================================================================== */
+        :root {
+            --primary-color: #006751;
+            --primary-light: #00b386;
+            --primary-dark: #004d35;
+            --text-dark: #333;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --bg-gray: #e9ecef;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--text-dark); background: var(--bg-light); min-height: 100vh; }
+
+        /* HEADER */
+        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1); transition: var(--transition); }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; max-width: 1800px; margin: 0 auto; }
+        .logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+        .logo img { height: 40px; width: auto; }
+        .logo-text { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); }
+        .nav-links { display: flex; list-style: none; gap: 0px; position: relative; }
+        .nav-links > li > a { text-decoration: none; color: var(--text-dark); font-weight: 400; transition: var(--transition); padding: 0.5rem 1rem; border-radius: 6px; display: flex; align-items: center; gap: 0.3rem; font-size: 0.9rem; }
+        .nav-links > li > a:hover { color: var(--primary-color); background: rgba(0, 103, 81, 0.10); }
+        .my-account-btn { display: flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 14px; font-weight: 500; color: #333; border: 1px solid #d6d6d6; text-decoration: none; transition: var(--transition); }
+        .my-account-btn:hover { background-color: #f2f2f2; border-color: #bbb; }
+
+        /* SUBNAV */
+        .cs-subnav-wrapper { margin-top: 72px; background: white; border-bottom: 1px solid var(--bg-gray); position: sticky; top: 72px; z-index: 990; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .cs-subnav { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; padding: 0 2rem; height: 55px; }
+        .cs-subnav-links-container { display: flex; height: 100%; }
+        .cs-subnav-item { position: relative; display: flex; align-items: center; height: 100%; }
+        .cs-subnav-item > a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.95rem; padding: 0 1rem; height: 100%; display: flex; align-items: center; transition: var(--transition); }
+        .cs-subnav-item:hover > a { color: white; background: var(--primary-color); }
+        .cs-subnav-dropdown { position: absolute; top: 100%; left: 0; background: var(--primary-color); min-width: 260px; box-shadow: var(--shadow); opacity: 0; visibility: hidden; transform: translateY(10px); transition: var(--transition); z-index: 1000; border-radius: 0 0 8px 8px; overflow: hidden; }
+        .cs-subnav-item:hover .cs-subnav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+        .cs-subnav-dropdown a { display: block; padding: 12px 20px; color: white; text-decoration: none; font-size: 0.85rem; transition: background 0.2s; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .cs-subnav-dropdown a:hover { background: var(--primary-dark); }
+        .cs-btn { display: inline-block; padding: 0.8rem 2rem; background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: var(--transition); border: none; cursor: pointer; }
+        .cs-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 103, 81, 0.4); }
+        .cs-btn-sm { padding: 0.5rem 1.2rem; font-size: 0.9rem; }
+
+        /* SPECIFIC STYLES FOR PROJECTS PAGE */
+        .cs-container { max-width: 1400px; margin: 0 auto; position: relative; padding: 5rem 2rem; }
+        .cs-section-title { font-size: 2.2rem; color: var(--primary-dark); margin-bottom: 1rem; font-family: 'Playfair Display', serif; }
+        
+        .cs-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .cs-gallery-item { aspect-ratio: 1; overflow: hidden; border-radius: 15px; box-shadow: var(--shadow); }
+        .cs-gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .cs-gallery-item:hover img { transform: scale(1.1); }
+
+        /* FOOTER */
+        footer { background: #0f172a; color: #ffffff; padding: 4rem 2rem 2rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
+        .footer-section h4 { color: var(--white); margin-bottom: 1.5rem; font-size: 1.2rem; }
+        .footer-links { display: flex; flex-direction: column; gap: 0.8rem; }
+        .footer-links a { color: #94a3b8; text-decoration: none; transition: var(--transition); display: flex; align-items: center; gap: 0.5rem; }
+        .footer-links a:hover { color: var(--white); transform: translateX(5px); }
+        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); color: #94a3b8; font-size: 0.9rem; }
+        
+        @media (max-width: 900px) { .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="main-header">
+        <nav>
+              <a href="../index.html" class="logo">
+                <img src="images/LAU Libraries Logo.png" alt="LAU Logo">
+                <span class="logo-text">Libraries</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li class="nav-item"><a href="index.html">🔍 Finding Materials</a></li>
+                <li class="nav-item"><a href="index.html">🎓 Using the Library</a></li>
+                <li class="nav-item"><a href="index.html">💬 Getting Support</a></li>
+                <li class="nav-item"><a href="index.html">🏛️ Visit Us</a></li>
+                <li class="nav-item"><a href="index.html">📣 About</a></li>
+            </ul>
+            <a href="#my-account" class="my-account-btn">
+                <i class="fa-regular fa-user"></i> My Account
+            </a>
+        </nav>
+    </header>
+
+    <!-- SUB-NAVIGATION -->
+    <div class="cs-subnav-wrapper">
+        <div class="cs-subnav">
+            <div class="cs-subnav-links-container">
+                
+                <div class="cs-subnav-item"><a href="index.html">Home</a></div>
+                <div class="cs-subnav-item"><a href="about.html">About</a></div>
+                <div class="cs-subnav-item"><a href="services.html">Services</a></div>
+                <div class="cs-subnav-item"><a href="equipment.html">Equipment</a></div>
+                <div class="cs-subnav-item"><a href="software.html">Software</a></div>
+                <div class="cs-subnav-item"><a href="workshops.html">Workshops</a></div>
+                <!-- Highlighted Projects state -->
+                <div class="cs-subnav-item"><a href="projects.html" style="background: var(--bg-gray);">Projects</a></div>
+                <div class="cs-subnav-item"><a href="policies.html">Policies</a></div>
+                <div class="cs-subnav-item"><a href="contact.html">Contact</a></div>
+            </div>
+            <a href="https://forms.office.com/r/tc4GVt8VXy?origin=lprLink" target="_blank" class="cs-btn cs-btn-sm">Book a Session</a>
+        </div>
+    </div>
+
+    <!-- PROJECTS CONTENT -->
+    <section id="projects">
+        <div class="cs-container">
+            <h2 class="cs-section-title">Student & Faculty Projects</h2>
+            <p style="color: var(--text-light);">A rotating showcase of prototypes, apparel patches, research artifacts, and narrative experiments made in the lab.</p>
+            <div class="cs-gallery">
+                <!-- If these images don't load, make sure they are exactly matched with the names in your "images" folder -->
+                <div class="cs-gallery-item"><img src="images/Student & Faculty Projects 1.jpg" alt="AR/VR"></div>
+                <div class="cs-gallery-item"><img src="images/Student & Faculty Projects 2.jpg" alt="3D Printers"></div>
+                <div class="cs-gallery-item"><img src="images/Student & Faculty Projects 3.jpg" alt="3D Prints"></div>
+                <div class="cs-gallery-item"><img src="images/Student & Faculty Projects 4.jpg" alt="3D Scanners"></div>
+                <div class="cs-gallery-item"><img src="images/Student & Faculty Projects 5.jpg" alt="Sewing & Embroidery"></div>
+                <div class="cs-gallery-item"><img src="images/Student & Faculty Projects 6.jpg" alt="Thread Spools"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <div class="footer-links">
+                        <a href="#">libraries@lau.edu.lb</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Lebanese American University Libraries.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+                header.style.padding = '0.5rem 0';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = 'var(--shadow)';
+                header.style.padding = '0';
+            }
+        });
+    </script>
+</body>
+</html>

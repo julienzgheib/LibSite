@@ -1,0 +1,1228 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Rent a Locker - LAU Libraries</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: #f8f9fa;
+        min-height: 100vh;
+      }
+
+      /* Header */
+      header {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        max-width: 1800px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+
+      .logo img {
+        height: 40px;
+        width: auto;
+      }
+
+      .logo-text {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #006751;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 0px;
+        position: relative;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 400;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-size: 0.9rem;
+      }
+
+      .nav-links a:hover {
+        color: #006751;
+        background: rgba(0, 103, 81, 0.1);
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #006751;
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 80%;
+      }
+
+      .nav-item {
+        position: relative;
+      }
+
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        padding: 1rem;
+        min-width: 200px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 1000;
+      }
+
+      .nav-item:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown a {
+        display: block;
+        padding: 0.5rem 1rem;
+        color: #333;
+        text-decoration: none;
+        border-radius: 6px;
+      }
+
+      .dropdown a:hover {
+        background: #f8f9fa;
+        color: #667eea;
+      }
+
+      .dropdown.dropdown-about {
+        min-width: 250px;
+      }
+      .dropdown.dropdown-visitus {
+        min-width: 300px;
+      }
+
+      .mobile-menu-toggle {
+        display: none;
+      }
+      .mobile-dropdown-toggle {
+        display: none;
+      }
+
+      .nav-item.has-mega {
+        position: static;
+      }
+
+      .mega-menu {
+        position: absolute;
+        left: 50%;
+        top: 100%;
+        transform: translateX(-50%);
+        width: max-content;
+        max-width: min(1000px, 88vw);
+        background: #fff;
+        padding: 32px 48px;
+        border-radius: 12px 12px 0 0;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        display: none;
+        z-index: 2000;
+      }
+
+      @media (min-width: 769px) {
+        .nav-item.has-mega:hover .mega-menu {
+          display: block;
+        }
+      }
+
+      .mega-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 60px;
+      }
+
+      .mega-grid.cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .mega-grid.cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 40px;
+      }
+
+      @media (max-width: 768px) {
+        .mega-grid.cols-2,
+        .mega-grid.cols-4 {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+      }
+
+      .mega-col {
+        position: relative;
+        padding-left: 22px;
+      }
+
+      .mega-col:not(:first-child)::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 6px;
+        bottom: 6px;
+        width: 1px;
+        background: #e7e7e7;
+      }
+
+      .mega-title {
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: #3d3d3d;
+      }
+      .mega-col a {
+        display: block;
+        padding: 10px 0;
+        text-decoration: none;
+        color: #2a2a2a;
+        font-size: 14px;
+      }
+      .mega-col a:hover {
+        text-decoration: underline;
+      }
+
+      .submenu {
+        position: relative;
+        display: inline-block;
+      }
+      .submenu-title {
+        display: block;
+        padding: 10px 0;
+        color: #2a2a2a;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      .dropdown .submenu-title {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        color: #333;
+        border-radius: 6px;
+      }
+      .dropdown .submenu-title:hover {
+        background: #f8f9fa;
+        color: #667eea;
+      }
+      .submenu-dropdown {
+        position: absolute;
+        left: 100%;
+        top: 0;
+        min-width: 220px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        padding: 10px 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(10px);
+        transition: 0.25s;
+        z-index: 3000;
+      }
+      .submenu:hover .submenu-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+      }
+      .submenu-dropdown a {
+        display: block;
+        padding: 10px 16px;
+        color: #333;
+        text-decoration: none;
+      }
+      .submenu-dropdown a:hover {
+        background: #f5f5f5;
+      }
+
+      .my-account-btn {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #333;
+        background: transparent;
+        border: 1px solid #d6d6d6;
+        text-decoration: none;
+        transition: all 0.2s ease;
+      }
+      .my-account-btn:hover {
+        background-color: #f2f2f2;
+        border-color: #bbb;
+      }
+
+      /* Page Banner */
+      .page-banner {
+        margin-top: 76px;
+        position: relative;
+        height: 320px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #ffffff;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+          url("images/rent-a-locker.png") center/cover;
+      }
+
+      .page-banner h1 {
+        font-size: 2.6rem;
+        font-weight: 700;
+      }
+
+      .page-banner p {
+        margin-top: 0.5rem;
+        font-size: 1.05rem;
+        opacity: 0.9;
+      }
+
+      /* Page Content */
+      .page-content {
+        max-width: 900px;
+        margin: 3rem auto;
+        padding: 0 1.5rem;
+      }
+
+      .intro-text {
+        font-size: 1.1rem;
+        color: #333;
+        background: #ffffff;
+        border-left: 4px solid #006751;
+        border-radius: 8px;
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .fee-highlight {
+        background: #e6f4ef;
+        border-radius: 8px;
+        padding: 1rem 1.5rem;
+        margin-bottom: 2.5rem;
+        color: #1a1a1a;
+        font-size: 0.98rem;
+      }
+
+      .fee-highlight strong {
+        color: #006751;
+      }
+
+      .info-card {
+        background: #ffffff;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        padding: 1.75rem 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .info-card h2 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #006751;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .info-card h2 i {
+        font-size: 1rem;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #e6f4ef;
+        color: #006751;
+      }
+
+      .info-card ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .info-card ul li {
+        position: relative;
+        padding-left: 1.4rem;
+        margin-bottom: 0.65rem;
+        font-size: 0.96rem;
+        color: #444;
+      }
+
+      .info-card ul li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.55rem;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #006751;
+      }
+
+      .info-card p {
+        font-size: 0.96rem;
+        color: #444;
+      }
+
+      .contact-card {
+        background: #006751;
+        color: #ffffff;
+        border-radius: 14px;
+        padding: 1.75rem 2rem;
+        margin-top: 2rem;
+      }
+
+      .contact-card h2 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+      }
+
+      .contact-card p {
+        font-size: 0.96rem;
+        opacity: 0.95;
+        margin-bottom: 0.4rem;
+      }
+
+      .contact-card a {
+        color: #ffffff;
+        font-weight: 600;
+        text-decoration: underline;
+      }
+
+      .contact-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin-top: 0.75rem;
+      }
+
+      .contact-list div {
+        font-size: 0.9rem;
+      }
+
+      .contact-list strong {
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      /* Footer */
+      footer {
+        background: #0f172a;
+        color: #ffffff;
+        padding: 4rem 2rem 2rem;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .footer-section h4 {
+        color: #ffffff;
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .footer-links a {
+        color: #94a3b8;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: #ffffff;
+        transform: translateX(5px);
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #94a3b8;
+        font-size: 0.9rem;
+      }
+
+      .whatsapp-float {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+        color: #ffffff;
+        border-radius: 50px;
+        padding: 1rem 1.5rem;
+        text-decoration: none;
+        box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-weight: 600;
+      }
+
+      .whatsapp-float:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 12px 40px rgba(37, 211, 102, 0.6);
+      }
+
+      @media (max-width: 768px) {
+        .page-banner {
+          height: 240px;
+        }
+        .page-banner h1 {
+          font-size: 1.9rem;
+        }
+        .page-content {
+          margin: 2rem auto;
+        }
+        .info-card,
+        .contact-card {
+          padding: 1.4rem 1.3rem;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .mobile-menu-toggle {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: none;
+          border: none;
+          font-size: 1.4rem;
+          cursor: pointer;
+          color: #006751;
+          z-index: 1001;
+          padding: 0.25rem 0.5rem;
+        }
+
+        .nav-links.mobile-open {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: #ffffff;
+          padding: 0.5rem 1.25rem 1.5rem;
+          max-height: calc(100vh - 80px);
+          overflow-y: auto;
+          z-index: 1001;
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+          border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .nav-links.mobile-open .nav-item {
+          margin-bottom: 0.15rem;
+          width: 100%;
+          border-bottom: 1px solid #eee;
+        }
+        .nav-links.mobile-open .nav-item:last-of-type {
+          border-bottom: none;
+        }
+        .nav-links.mobile-open .mobile-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+        }
+        .nav-links.mobile-open .nav-item > a {
+          flex: 1;
+          font-weight: 600;
+          padding: 0.7rem 0.25rem;
+        }
+        .nav-links.mobile-open .nav-item > a::after {
+          display: none;
+        }
+
+        .nav-links.mobile-open .mobile-dropdown-toggle {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 2.2rem;
+          height: 2.2rem;
+          flex-shrink: 0;
+          background: none;
+          border: none;
+          color: #006751;
+          font-size: 0.9rem;
+          cursor: pointer;
+        }
+
+        .nav-links.mobile-open .mobile-dropdown-toggle i {
+          transition: transform 0.25s ease;
+        }
+        .nav-links.mobile-open
+          .nav-item.mobile-expanded
+          > .mobile-row
+          .mobile-dropdown-toggle
+          i {
+          transform: rotate(180deg);
+        }
+
+        .nav-links.mobile-open .dropdown,
+        .nav-links.mobile-open .mega-menu {
+          display: none;
+          position: static;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+          box-shadow: none;
+          background: #f8f9fa;
+          margin: 0 0 0.6rem;
+          padding: 0.75rem 1rem;
+          border-radius: 8px;
+          width: 100%;
+          max-width: 100%;
+        }
+
+        .nav-links.mobile-open .nav-item.mobile-expanded > .dropdown,
+        .nav-links.mobile-open .nav-item.mobile-expanded > .mega-menu {
+          display: block;
+        }
+
+        .nav-links.mobile-open .mega-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+        .nav-links.mobile-open .mega-col {
+          padding-left: 0;
+        }
+        .nav-links.mobile-open .mega-col:not(:first-child)::before {
+          display: none;
+        }
+        .nav-links.mobile-open .mega-col:not(:first-child) {
+          border-top: 1px solid #e7e7e7;
+          padding-top: 0.75rem;
+          margin-top: 0.5rem;
+        }
+
+        .nav-links.mobile-open .submenu {
+          display: block;
+        }
+        .nav-links.mobile-open .submenu-title {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .nav-links.mobile-open .submenu-dropdown {
+          position: static;
+          display: none;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+          box-shadow: none;
+          background: transparent;
+          padding: 0 0 0 1rem;
+        }
+        .nav-links.mobile-open .submenu.mobile-expanded .submenu-dropdown {
+          display: block;
+        }
+
+        .nav-links.mobile-open .mobile-account-item {
+          border-bottom: 1px solid #eee;
+          padding-bottom: 0.5rem;
+          margin-bottom: 0.4rem;
+        }
+        .nav-links.mobile-open .mobile-account-item .my-account-btn {
+          display: flex;
+          width: 100%;
+          justify-content: center;
+          padding: 0.6rem 1rem;
+          font-weight: 600;
+        }
+
+        footer {
+          padding: 2.25rem 1.25rem 1.25rem;
+        }
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem 1rem;
+          margin-bottom: 1.5rem;
+        }
+        .footer-section h4 {
+          font-size: 0.95rem;
+          margin-bottom: 0.6rem;
+        }
+        .footer-links {
+          gap: 0.45rem;
+        }
+        .footer-links a {
+          font-size: 0.8rem;
+        }
+        .copyright {
+          padding-top: 1.1rem;
+          font-size: 0.75rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+        <nav>
+  <a href="index.html" class="logo">
+    <img src="https://online.lau.edu.lb/wp-content/uploads/2021/04/LAU-logo-green.png" alt="LAU Logo">
+    <span class="logo-text">Libraries</span>
+  </a>
+
+  <button type="button" class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <ul class="nav-links" id="navLinks">
+
+    
+    <li class="nav-item">
+      <a href="https://librarycatalog.lau.edu.lb/"> Finding Materials</a>
+      <div class="dropdown">
+        <a href="https://librarycatalog.lau.edu.lb/">Library Search</a>
+        <a href="https://libguides.lau.edu.lb/az/databases?preview=cca4debe741d5531920779e9c5d30184">Online Databases</a>
+        <a href="https://sandbox03-eu.primo.exlibrisgroup.com/discovery/search?query=any,contains,hani&tab=CourseReserves&search_scope=CourseReserves&vid=961LAU_INST:961LAU_INST&offset=0">Material on Reserve</a>
+        <a href="https://laur.lau.edu.lb:8443/xmlui/">LAU Repository</a>
+        <a href="archives.html">Archives and Special Collections</a>
+      </div>
+    </li>
+
+
+  <li class="nav-item has-mega">
+  <a href="borrow-renew.html"> Using the Library</a>
+
+  <div class="mega-menu">
+    <div class="mega-grid cols-4">
+
+      <div class="mega-col">
+        <div class="mega-title">Access &amp; Borrowing</div>
+        <a href="off-campus.html">Off-campus Access to Electronic Materials</a>
+        <a href="borrow-renew.html">Borrow &amp; Renew</a>
+        <a href="ill-dd.html">Interlibrary Loan/Document Delivery</a>
+        <a href="rent-a-locker.html">Rent a Locker</a>
+        <div class="submenu"><span class="submenu-title">Suggest a Purchase ▸</span><div class="submenu-dropdown">
+          <a href="https://librarycatalog.lau.edu.lb/discovery/purchaseRequest?vid=961LAU_INST%3AVU1">Purchase Request</a>
+          <a href="https://forms.office.com/r/VP0peAeuCE">Faculty Publication</a>
+        </div>
+    </div>
+        
+         
+      </div>
+
+      <div class="mega-col">
+        <div class="mega-title">Learning Support</div>
+        <div class="submenu"><span class="submenu-title">Group Study Rooms ▸</span><div class="submenu-dropdown"><a href="http://lau.libcal.com/rooms.php?i=1566">Riyad Nassar Library</a><a href="https://lau.libcal.com/rooms.php?i=16531">Joseph G. Jabbra Library</a></div></div>
+        <a href="https://libraries.lau.edu.lb/services/writing-center.php">Writing &amp; Communication Center</a>
+        <a href="course-support.html">Course Support for Instructors</a>
+      </div>
+
+      <div class="mega-col">
+        <div class="mega-title">Technology</div>
+        <a href="Creative Space Website Prototype/index.html">Creative Space Access</a>
+        <a href="print-scan-copy.html">Print/Scan/Copy</a>
+        <a href="computers-equipment.html">Computers &amp; Equipment</a>
+      </div>
+
+      <div class="mega-col">
+        <div class="mega-title">Events</div>
+        <a href="https://lau.libcal.com/calendar?cid=21473">Workshops &amp; Events</a>
+      </div>
+
+    </div>
+  </div>
+</li>
+  
+ <li class="nav-item has-mega">
+  <a href="thesis-support.html"> Research Support</a>
+
+  <div class="mega-menu">
+    <div class="mega-grid cols-2">
+
+      <div class="mega-col">
+        <div class="mega-title">Research Basics</div>
+        <a href="thesis-support.html">Thesis Support</a>
+        <a href="framing-topic.html">Framing a Research Topic</a>
+        <a href="open-access.html">Open Access &amp; Copyright</a>
+        <a href="citation-metrics.html">Citation Metrics &amp; Publishing</a>
+        <a href="citation-help.html">Citation Help</a>
+      </div>
+
+      <div class="mega-col">
+        <div class="mega-title">Research Services</div>
+        <a href="consultations.html">Research Consultations and Tutorials</a>
+        <a href="data-analysis.html">Data Analysis and Visualization</a>
+        <a href="https://lau.libcal.com/api_events.php?m=upc&cid=21473&audience=&c=&d=80083-80235-80233-80242-80234&tags=&l=50&tar=0&simple=agenda">Information Literacy Sessions</a>
+      </div>
+
+      <!-- <div class="mega-col">
+        <div class="mega-title">More Support</div>
+        <a href="https://libraries.lau.edu.lb/services/writing-center.php">Writing &amp; Communication Center</a>
+        <a href="course-support.html">Course Support for Instructors</a>
+        <a href="chat-librarian.html">Chat with a Librarian</a>
+      </div> -->
+
+    </div>
+  </div>
+</li>
+   
+    <li class="nav-item">
+      <a href="locations.html"> Visit Us</a>
+      <div class="dropdown dropdown-visitus">
+        <a href="locations.html">Locations</a>
+        <a href="hours.html">Hours</a>
+        <!-- <div class="submenu"><span class="submenu-title">Group Study Rooms ▸</span><div class="submenu-dropdown"><a href="http://lau.libcal.com/rooms.php?i=1566">Riyad Nassar Library</a><a href="https://lau.libcal.com/rooms.php?i=16531">Joseph G. Jabbra Library</a></div></div>
+        <a href="https://libraries.lau.edu.lb/services/writing-center.php">Writing &amp; Communication Center</a>
+        <a href="Creative Space Website Prototype/index.html">Creative Spaces</a>
+      </div> -->
+    </li>
+
+   
+    <li class="nav-item">
+      <a href="history.html"> About</a>
+      <div class="dropdown dropdown-about">
+        <a href="history.html">Our History</a>
+        <a href="mission.html">Mission, Vision, Values</a>
+        <a href="strategic-plan.html">Strategic Plan</a>
+        <a href="staff-admin.html">Staff &amp; Administration</a>
+        <a href="policies.html">Policies &amp; Guidelines</a>
+        <!--<a href="news-events.html">News &amp; Events</a>-->
+        <a href="https://libraries.lau.edu.lb/donate/index.php">Give to the LAU Libraries</a>
+        
+      </div>
+    </li>
+
+  </ul>
+
+ 
+  <a href="https://iam.lau.edu.lb/isam/sps/LAUIDP/saml20/login?SAMLRequest=jZLRb9owEMb%2FlcjvxInTks4iVKEBDYlNtJQ97O2aHNSSY2c%2Bh63%2F%2FUwiNPZS8WbZ93333e88e%2FzT6uiEjpQ1BUvjhEVoatsocyzY%2FnU1eWCP8xlBqztZ9v7dvOCvHslHQWdIDg8F652RFkiRNNAiSV%2FLXfltI0WcyM5Zb2urWVQSofOh0ZM11LfoduhOqsb9y6Zg7953JDnX6s2B%2B6jBg7bHWEMfY9PH%2Bo235si7hr6CaTRu7FEZFlUhijLgh%2FQXCwXttU6FkJw64ptyv662%2FJxZJFyPDivrahwmK9gBNCGL1lXBynwh7lfL7G45DScxFctskSzyu%2BpLvhLTLK%2Bga5I01NIWiNQJ%2F6mJelwb8mB8wUQippMknyTpa5rKNJPpfZxkDz9Z9OMCPUBiI2I5aN0V28%2FRwgUom9%2BGb5h5xq96jY1FJ78H90DHalV%2FXAUQt29Xa%2Fv7ySH4wMK7Hge2LfjPDc43qpkchlLpHRhSaDyLdttzpOcetDoodLf%2BkHGtfD5O%2Bf%2Bnnf8F&amp;RelayState=primaws%40%40961LAU_INST" class="my-account-btn">
+  My Account
+    </a>
+</nav>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+      <div>
+        <h1>Rent a Locker</h1>
+        <p>Secure storage for your belongings at RNL, JGJL &amp; HSL</p>
+      </div>
+    </section>
+
+    <!-- Page Content -->
+    <main class="page-content">
+      <p class="intro-text">
+        Secure your laptop, books, papers, and other personal belongings in a
+        locker that you can use throughout the Riyad Nassar Library (RNL),
+        Joseph G. Jabbra Library (JGJL) &amp; Health Sciences Library (HSL).
+      </p>
+
+      <div class="fee-highlight">
+        All current LAU students are eligible to rent a locker in the library.
+        Locker reservation will be allocated to each interested student at the
+        beginning of the semester on a first-come, first-served basis. In
+        return, the student will pay at the Business Office a rental fee that
+        may vary between <strong>$10 and $15 per semester</strong> depending on
+        the locker size. Lockers are available for one semester only and may be
+        renewed upon availability.
+      </div>
+
+      <div class="info-card">
+        <h2>
+          <i class="fa-solid fa-user-check"></i> Who is Eligible for a Locker?
+        </h2>
+        <ul>
+          <li>
+            Only currently registered LAU students are eligible to rent lockers.
+          </li>
+          <li>
+            Existing locker holders who become unregistered must give up their
+            locker.
+          </li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h2><i class="fa-solid fa-key"></i> How Can I Get a Locker?</h2>
+        <ul>
+          <li>Check out an available key at the Circulation desk.</li>
+          <li>
+            If no lockers are available, you may add your name to the waiting
+            list.
+          </li>
+          <li>Reservations are made on a first-come, first-served basis.</li>
+          <li>Holds can be placed on lockers at the Circulation desk.</li>
+          <li>The Business Office will handle payment of the rental fee.</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h2>
+          <i class="fa-solid fa-box-open"></i> What Can I Keep in My Locker?
+        </h2>
+        <ul>
+          <li>
+            Library books charged out to you, and not overdue, may be kept in
+            lockers.
+          </li>
+          <li>No other library materials may be kept in lockers.</li>
+          <li>
+            No food is allowed in lockers (this includes snacks and beverages).
+          </li>
+          <li>
+            All personal items left in unlocked lockers or recovered from
+            lockers that become overdue will be removed. The Library will send
+            any unclaimed personal items to the Lost and Found Office in the
+            Protection Department.
+          </li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h2><i class="fa-solid fa-shield-halved"></i> What About Security?</h2>
+        <ul>
+          <li>Lockers are provided for convenience.</li>
+          <li>
+            Materials kept in lockers are the responsibility of the user. The
+            Library is not responsible for any lost, stolen, or damaged material
+            stored in lockers.
+          </li>
+          <li>
+            The Library reserves the right to inspect the contents of a locker
+            at any time.
+          </li>
+          <li>
+            Staff at the Circulation desk can assist users by opening locks.
+            However, lost keys and damaged locks may be subject to a replacement
+            fee, and anything in your locker will be removed and sent to the
+            Lost and Found Office in the Protection Department.
+          </li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h2>
+          <i class="fa-regular fa-clock"></i> How Long Can I Use My Locker?
+        </h2>
+        <p>
+          Lockers can be rented for one semester and may be renewed if there is
+          no waiting list.
+        </p>
+      </div>
+
+      <div class="contact-card">
+        <h2>Problems? Questions?</h2>
+        <p>Ask the Circulation Desk either in person, by phone, or by email:</p>
+        <div class="contact-list">
+          <div><strong>RNL</strong> ext. 1213</div>
+          <div><strong>JGJL</strong> ext. 2280</div>
+          <div><strong>HSL</strong> ext. 2977</div>
+          <div>
+            <strong>Email</strong>
+            <a href="mailto:circulation@lau.edu.lb">circulation@lau.edu.lb</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-grid">
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <div class="footer-links">
+              <a href="index.html"><i class="fas fa-home"></i> Home</a>
+              <a href="https://librarycatalog.lau.edu.lb/"
+                ><i class="fas fa-search"></i> One-Search</a
+              >
+              <a href="news-events.html"
+                ><i class="fas fa-calendar"></i> Events</a
+              >
+              <a href="chat-librarian.html"
+                ><i class="fas fa-question-circle"></i> FAQs</a
+              >
+            </div>
+          </div>
+          <div class="footer-section">
+            <h4>Services</h4>
+            <div class="footer-links">
+              <a href="borrow-renew.html"
+                ><i class="fas fa-book"></i> Borrow &amp; Renew</a
+              >
+              <a href="print-scan-copy.html"
+                ><i class="fas fa-print"></i> Print &amp; Scan</a
+              >
+              <a href="computers-equipment.html"
+                ><i class="fas fa-desktop"></i> Computers</a
+              >
+              <a href="rent-a-locker.html"
+                ><i class="fas fa-lock"></i> Rent a Locker</a
+              >
+            </div>
+          </div>
+          <div class="footer-section">
+            <h4>Resources</h4>
+            <div class="footer-links">
+              <a
+                href="https://libguides.lau.edu.lb/az/databases?preview=cca4debe741d5531920779e9c5d30184"
+                ><i class="fas fa-database"></i> Databases</a
+              >
+              <a
+                href="https://sandbox03-eu.primo.exlibrisgroup.com/discovery/search?query=any,contains,hani&tab=CourseReserves&search_scope=CourseReserves&vid=961LAU_INST:961LAU_INST&offset=0"
+                ><i class="fas fa-bookmark"></i> Material on Reserve</a
+              >
+              <a href="framing-topic.html"
+                ><i class="fas fa-graduation-cap"></i> Research Guides</a
+              >
+              <a href="archives.html#digital-collections"
+                ><i class="fas fa-archive"></i> Digital Collections</a
+              >
+            </div>
+          </div>
+          <div class="footer-section">
+            <h4>Contact</h4>
+            <div class="footer-links">
+              <a href="locations.html"
+                ><i class="fas fa-map-marker-alt"></i> Locations</a
+              >
+              <a href="hours.html"><i class="fas fa-clock"></i> Hours</a>
+              <a href="tel:+9611786456"
+                ><i class="fas fa-phone"></i> (961) 1-786456</a
+              >
+              <a href="mailto:libraries@lau.edu.lb"
+                ><i class="fas fa-envelope"></i> libraries@lau.edu.lb</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>
+            &copy; 2025 Lebanese American University Libraries. All rights
+            reserved.
+          </p>
+          <p style="margin-top: 0.5rem; font-size: 0.85rem">
+            Committed to academic excellence and research innovation
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- <a href="chat-librarian.html" class="whatsapp-float">
+      <i class="fab fa-whatsapp"></i>
+      <span>Chat with Librarian</span>
+    </a> -->
+
+    <script>
+      // Mobile navigation: hamburger + accordion sections + relocated "My Account"
+      (function () {
+        var toggleBtn = document.getElementById("mobileMenuToggle");
+        var navLinks = document.getElementById("navLinks");
+        var navEl = document.querySelector("header nav");
+        if (!toggleBtn || !navLinks || !navEl) return;
+
+        function setMenuOpen(isOpen) {
+          navLinks.classList.toggle("mobile-open", isOpen);
+          toggleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+          var icon = toggleBtn.querySelector("i");
+          if (icon) {
+            icon.classList.toggle("fa-bars", !isOpen);
+            icon.classList.toggle("fa-xmark", isOpen);
+          }
+          if (!isOpen) {
+            navLinks
+              .querySelectorAll(".mobile-expanded")
+              .forEach(function (el) {
+                el.classList.remove("mobile-expanded");
+              });
+            navLinks
+              .querySelectorAll(".mobile-dropdown-toggle")
+              .forEach(function (btn) {
+                btn.setAttribute("aria-expanded", "false");
+              });
+          }
+        }
+
+        toggleBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          setMenuOpen(!navLinks.classList.contains("mobile-open"));
+        });
+
+        navLinks
+          .querySelectorAll(":scope > .nav-item")
+          .forEach(function (item) {
+            var panel = item.querySelector(
+              ":scope > .dropdown, :scope > .mega-menu",
+            );
+            var link = item.querySelector(":scope > a");
+            if (!panel || !link) return;
+
+            var row = document.createElement("div");
+            row.className = "mobile-row";
+
+            var arrowBtn = document.createElement("button");
+            arrowBtn.type = "button";
+            arrowBtn.className = "mobile-dropdown-toggle";
+            arrowBtn.setAttribute(
+              "aria-label",
+              "Show " + link.textContent.trim() + " submenu",
+            );
+            arrowBtn.setAttribute("aria-expanded", "false");
+            arrowBtn.innerHTML = '<i class="fas fa-chevron-down"></i>';
+
+            item.insertBefore(row, link);
+            row.appendChild(link);
+            row.appendChild(arrowBtn);
+
+            arrowBtn.addEventListener("click", function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              var isOpen = item.classList.toggle("mobile-expanded");
+              arrowBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+            });
+          });
+
+        navLinks.querySelectorAll(".submenu").forEach(function (submenu) {
+          var title = submenu.querySelector(":scope > .submenu-title");
+          if (!title) return;
+          title.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            submenu.classList.toggle("mobile-expanded");
+          });
+        });
+
+        navLinks.addEventListener("click", function (e) {
+          if (e.target.tagName === "A") {
+            setMenuOpen(false);
+          }
+        });
+
+        document.addEventListener("click", function (e) {
+          if (
+            navLinks.classList.contains("mobile-open") &&
+            !navLinks.contains(e.target) &&
+            e.target !== toggleBtn &&
+            !toggleBtn.contains(e.target)
+          ) {
+            setMenuOpen(false);
+          }
+        });
+
+        var acct = navEl.querySelector(":scope > .my-account-btn");
+        if (acct) {
+          var acctAnchor = document.createElement("span");
+          acctAnchor.style.display = "none";
+          acct.parentNode.insertBefore(acctAnchor, acct);
+
+          var acctItem = document.createElement("li");
+          acctItem.className = "nav-item mobile-account-item";
+
+          function placeAccountForViewport() {
+            if (window.innerWidth <= 768) {
+              if (acct.parentNode !== acctItem) {
+                acctItem.appendChild(acct);
+              }
+              if (navLinks.firstChild !== acctItem) {
+                navLinks.insertBefore(acctItem, navLinks.firstChild);
+              }
+            } else if (acct.parentNode !== acctAnchor.parentNode) {
+              acctAnchor.parentNode.insertBefore(acct, acctAnchor.nextSibling);
+            }
+          }
+
+          placeAccountForViewport();
+          window.addEventListener("resize", placeAccountForViewport);
+        }
+
+        window.addEventListener("resize", function () {
+          if (window.innerWidth > 768) {
+            setMenuOpen(false);
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
