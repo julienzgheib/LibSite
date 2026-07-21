@@ -1449,6 +1449,105 @@
         .mini-card h5 { color: #006751; font-size: 0.95rem; margin-bottom: 0.4rem; }
         .tag-row { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.6rem; }
         .tag { background: rgba(0,103,81,0.08); color: #006751; font-size: 0.78rem; font-weight: 600; padding: 0.3rem 0.7rem; border-radius: 50px; }
+        .resource-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin: 1rem 0; }
+        .resource-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    min-height: 185px;
+
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #ffffff;
+
+    border: 1px solid #ececec;
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+
+    color: #006751;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    line-height: 1.3;
+
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+
+    transition: 0.3s ease;
+}
+
+.resource-links a::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.25);
+    z-index: -1;
+    transition: 0.3s ease;
+}
+
+
+/* Hover */
+.resource-links a:hover {
+    color: white;
+    border-color: #006751;
+}
+
+.resource-links a:hover::before {
+    background: rgba(0,103,81,0.85);
+}
+        .archive-boxes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .archive-box {
+            position: relative;
+            height: 130px;
+            border-radius: 14px;
+            overflow: hidden;
+            background-color: #1a3d35;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .archive-box.fit-contain {
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .archive-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0) 100%);
+        }
+
+        .archive-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 26px rgba(0,0,0,0.2);
+        }
+
+        .archive-box span {
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+            font-size: 0.82rem;
+            font-weight: 600;
+            line-height: 1.3;
+            padding: 0.7rem 0.8rem;
+        }
         .btn-sm { display: inline-block; margin-top: 0.6rem; padding: 0.55rem 1.3rem; background: linear-gradient(135deg, #006751 0%, #00b386 100%); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 0.85rem; transition: all 0.3s ease; }
         .btn-sm:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,103,81,0.35); }
         .btn-outline { display: inline-block; margin-top: 0.6rem; padding: 0.5rem 1.2rem; background: transparent; color: #006751; text-decoration: none; border: 2px solid #006751; border-radius: 50px; font-weight: 600; font-size: 0.85rem; }
@@ -1525,6 +1624,7 @@
         @media (max-width: 900px) {
             .page-shell.with-toc { grid-template-columns: 1fr; }
             .two-col { grid-template-columns: 1fr; }
+            .resource-links { grid-template-columns: 1fr 1fr; }
         }
         @media print {
             header, .page-toc, .related-pages, .whatsapp-float, .print-btn, footer, .crumbs { display: none !important; }
@@ -1686,11 +1786,14 @@
 </section>
 
 <div class="page-shell with-toc">
-  <aside class="page-toc"><h4>On this page</h4><a href="#archives-intro">Introduction</a>
-<a href="#posters">Posters</a>
-<a href="#theses-collection">Theses and Dissertations Collection</a>
+  <aside class="page-toc">
+<a href="#university-archives">University Archives</a>
 <a href="#special-collections">Special Collections</a>
-<a href="#digital-collections">Digital Collections</a></aside>
+<a href="#theses-collection">Theses and Dissertations Collection</a>
+<a href="#access-use">Acess &amp; Use</a>
+<a href="#guidlines">Guidlines</a>
+<a href="#copyright">Copyright</a>
+</aside>
   <main class="content-main">
     <section class="content-section" id="archives">
       
@@ -1698,17 +1801,42 @@
   <h2>Archives and Special Collections</h2>
 
   <div class="sub-block" id="archives-intro">
-    <h3>Introduction</h3>
+    <!-- <h3>Introduction</h3> -->
     <p>The Archives Unit at LAU preserves the university's heritage and highlights the legacy of Lebanese pioneers, leaders, and notable alumni. Focusing on Performing Arts, Journalism, and Women's Studies, the unit collaborates with LAU's schools and centers to build unique archival collections and Special Collections.</p>
     <p>Through enhanced digital platforms, researchers and the public can access these rich resources, positioning LAU as a leading institution for archival scholarship and cultural documentation.</p>
   </div>
 
-  <div class="sub-block" id="posters">
+  <!-- <div class="sub-block" id="posters">
     <h3>Posters</h3>
     <p>The Poster Collection comprises over 400 posters that document the institutional and cultural history of the Lebanese American University (LAU). Primarily developed by the Department of Communication Arts within the School of Arts and Sciences, the collection provides valuable historical documentation of a wide range of university activities and events, including theatrical and musical productions, student initiatives, and major campus events.</p>
     <p>The posters have been collected from the LAU Department of Communication Arts within the School of Arts and Sciences, while others have been generously donated through private collectors.</p>
     <a class="btn-outline" href="https://www.jstor.org/">Explore the LAU Poster Collection on JSTOR</a>
+  </div> -->
+
+<div class="sub-block" id="university-archives">
+    <h3>University Archives</h3>
+    <div class="resource-links">
+      <a href="https://libguides.lau.edu.lb/c.php?g=1468120&p=10924033" target="_blank" rel="noopener" style="background-image:url('images/alumnae-bulletin.jpg')">Alumnae Bulletin</a>
+      <a href="https://libguides.lau.edu.lb/c.php?g=1430933" target="_blank" rel="noopener" style="background-image:url('images/trireme-yearbook.jpg')">LAU Yearbook: Trireme</a>
+      <a href="https://www.jstor.org/site/lebanese-american-university/lebaneseamericanuniversityschoolofartssciencesdepartmentofcommunicationartsmajorproductions/?so=item_title_str_asc&searchkey=1784626959865" target="_blank" rel="noopener" style="background-image:url('images/comm-arts-major-productions.jpg')">LAU School of Arts &amp; Sciences, Dept. of Communication Arts (Major Productions)</a>
+      <a href="https://www.jstor.org/site/lebanese-american-university/lebaneseamericanuniversityschoolofartssciencesdepartmentofcommunicationartsstudentproductions/?so=item_title_str_asc&searchkey=1784626985832" target="_blank" rel="noopener" style="background-image:url('images/comm-arts-student-productions.jpg')">LAU School of Arts &amp; Sciences, Dept. of Communication Arts (Student Productions)</a>
+      <a href="https://laur.lau.edu.lb:8443/xmlui/handle/10725/16436" target="_blank" rel="noopener" style="background-image:url('images/lau-photographs-collection.jpg')">Lebanese American University Photographs Collection</a>
+      <a href="jstor.org/site/lebanese-american-university/ramialkhalslauposterscollection/?so=item_title_str_asc&searchkey=1771422873238&pagemark=eyJwYWdlIjoyLCJzdGFydCI6MjUsInRvdGFsIjo1NX0%253D" target="_blank" rel="noopener" style="background-image:url('images/rami-al-khal-posters.jpg')">Rami Al Khal Poster Collection</a>
+    </div>
   </div>
+
+  <div class="sub-block" id="special-collections">
+    <h3>Special Collections</h3>
+    <div class="resource-links">
+      <a href="https://libguides.lau.edu.lb/c.php?g=1517751&p=11355954" target="_blank" rel="noopener" style="background-image:url('images/attorney-antoine-collection.jpg')">Attorney Antoine Keyrouz’s Collection (Arabic)</a>
+      <a href="#" target="_blank" rel="noopener" style="background-image:url('images/fuad-rifka.jpg')">Fuad Rifka (In Process)</a>
+      <a href="https://libguides.lau.edu.lb/GGFA2023" target="_blank" rel="noopener" style="background-image:url('images/georgette-gebara.jpg')">Georgette Gebara Digital Archives</a>
+      <a href="https://libguides.lau.edu.lb/c.php?g=1534577&p=11502526" target="_blank" rel="noopener" style="background-image:url('images/maher-attar.jpg')">Maher Attar’s Iconic Civil War Photograph</a>
+      <a href="https://libguides.lau.edu.lb/c.php?g=1493532&p=11153047" target="_blank" rel="noopener" style="background-image:url('images/tender-stitches.jpg')">Tender Stitches - Ottoman Embroideries</a>
+    </div>
+  </div>
+
+
 
   <div class="sub-block" id="theses-collection">
     <h3>Theses and Dissertations Collection</h3>
@@ -1718,22 +1846,24 @@
     <a class="btn-sm" href="https://laur.lau.edu.lb:8443/xmlui/">Search the LAU Repository</a>
   </div>
 
-  <div class="sub-block" id="special-collections">
-    <h3>Special Collections</h3>
-    <p>The Archives Unit at the LAU libraries hosts Special Collections, particularly in the field of Performing Arts and Women Studies. These include the <a href="https://libguides.lau.edu.lb/GGFA2023">Georgette Gebara Digital Archives</a>, <a href="https://libguides.lau.edu.lb/c.php?g=1493532&amp;p=11153047">Tender Stitches &ndash; Ottoman Embroideries</a>, Fuad Rifka, and Attorney Antoine Keyrouz collections.</p>
-    <p>These collections are carefully preserved, organized in finding aids, and made accessible to researchers and the public through digital guides, providing structured and convenient access to these unique materials.</p>
-    <div class="tag-row">
-      <a class="tag" href="https://libguides.lau.edu.lb/GGFA2023">Georgette Gebara Digital Archives</a>
-      <a class="tag" href="https://libguides.lau.edu.lb/c.php?g=1493532&amp;p=11153047">Tender Stitches &ndash; Ottoman Embroideries</a>
-      <span class="tag">Fuad Rifka</span>
-      <span class="tag">Attorney Antoine Keyrouz Collection</span>
-    </div>
+  <div class="sub-block" id="access-use">
+    <h3>Access &amp; Use</h3>
+    <p>Non-digitized special collections holdings do not circulate because of the rarity or value of the items and are maintained in closed stacks. To consult the original copies, users can visit the Archives Unit at Riyad Nassar Library (Floor 12) upon appointment via email to: <a href="mailto:archives@lau.edu.lb">archives@lau.edu.lb</a>.</p>
   </div>
 
-  <div class="sub-block" id="digital-collections">
-    <h3>Digital Collections</h3>
-    <p>The LAU Digital Collections preserve and showcase the university's history, publications, and scholarly output from its founding in 1924 to the present. The Archives Unit digitizes and makes accessible a wide range of materials, including the <a href="https://libguides.lau.edu.lb/c.php?g=1468120&amp;p=10924033">Alumnae Bulletin</a>, <a href="https://libguides.lau.edu.lb/c.php?g=1430933">LAU Yearbook: Trireme</a>, the <a href="https://www.jstor.org/site/lebanese-american-university/">Department of Communication Arts poster collections</a>. Faculty publications are also available through <a href="https://laur.lau.edu.lb:8443/xmlui/">LAUR Home</a> in accordance with copyright policies.</p>
-    <p>These digital resources offer researchers and the public structured and convenient access to LAU's rich legacy, supporting scholarship, learning, and the preservation of the university's cultural and academic heritage.</p>
+  <div class="sub-block" id="guidlines">
+    <h3>Guidlines</h3>
+    <p>Read <a href="https://libraries.lau.edu.lb/files/special-coll-guidelines.pdf">the special collections guidelines.</a>.</p>
+  </div>
+
+  <div class="sub-block" id="copyright">
+    <h3>Copyright</h3>
+    <p>View <a href="https://libraries.lau.edu.lb/files/copyright.pdf">the copyright statement.</a>.</p>
+  </div>
+
+  <div class="info-card">
+    <h4 style="color:#006751; font-size:1rem; margin-bottom:0.4rem;">We Value Your Feedback!</h4>
+    <p style="margin-bottom:0;">Have feedback on any of our existing digital archival collections? Contact us at <a href="mailto:archives@lau.edu.lb">archives@lau.edu.lb</a></p>
   </div>
 
     </section>
