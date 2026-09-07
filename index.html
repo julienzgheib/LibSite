@@ -2734,6 +2734,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const PRIMO_BASE = "https://librarycatalog.lau.edu.lb/discovery/search";
   const PRIMO_VID = "961LAU_INST:VU1";
+  const PRIMO_FIELD_MAP = {
+  all: "any",
+  keyword: "any",
+  title: "title",
+  author: "creator",
+  subject: "sub",
+  isbn: "isbn",
+};//add this 
+
+  
 
   const tabConfig = {
     everything: {
@@ -2805,7 +2815,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // initial
-  setActiveTab("everything");
+  setActiveTab("catalog");
 
   /* ---------------------------------------------------------------------
      BUILD THE RESULTS LINK
@@ -2825,9 +2835,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const cfg = tabConfig[tabName];
     const t = cfg.target;
     const q = encodeURIComponent(term || "");
+      //then this:
+    const selectedField = searchField ? searchField.value : "all";
+  const primoField = PRIMO_FIELD_MAP[selectedField] || "any";
+
 
     const params = [
-      "query=any,contains," + q,
+      //"query=any,contains," + q,
+        "query=" + primoField + ",contains," + q,
       "tab=" + encodeURIComponent(t.tab),
       "search_scope=" + encodeURIComponent(t.scope),
       "vid=" + encodeURIComponent(PRIMO_VID),
