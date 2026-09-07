@@ -2741,7 +2741,7 @@ document.addEventListener("DOMContentLoaded", () => {
   author: "creator",
   subject: "sub",
   isbn: "isbn",
-};//add this 
+};
 
   
 
@@ -2842,7 +2842,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const params = [
       //"query=any,contains," + q,
-        "query=" + primoField + ",contains," + q,
+
+      "query=" + primoField + ",contains," + q,
       "tab=" + encodeURIComponent(t.tab),
       "search_scope=" + encodeURIComponent(t.scope),
       "vid=" + encodeURIComponent(PRIMO_VID),
