@@ -2994,14 +2994,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 function placeAccountForViewport() {
                     if (window.innerWidth <= 768) {
-                        if (acct.parentNode !== acctItem) {
-                            acctItem.appendChild(acct);
-                        }
-                        if (navLinks.firstChild !== acctItem) {
-                            navLinks.insertBefore(acctItem, navLinks.firstChild);
-                        }
-                    } else if (acct.parentNode !== acctAnchor.parentNode) {
-                        acctAnchor.parentNode.insertBefore(acct, acctAnchor.nextSibling);
+                        accts.forEach(function(el){
+                            if (el.parentNode!=accItem)
+                            accItem.appendChild(el);
+                        });
+                        if (navLinks.firstChild!==accItem)
+                        navLinks.insertBefore(accItem,navLinks.firstChild);
+                    }
+                    else{
+                        accts.forEach(function(el,i){
+                            if (el.parentNode!==anchors[i].parentNode){
+                                anchors[i].parentNode.insertBefore(el,anchors[i].nextSibling);
+                            }
+                        });
                     }
                 }
 
